@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>netcoreapp3.1</TargetFramework>
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+		<PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+		<Authors>Andrew Mills</Authors>
+		<Company>CSC-SCC</Company>
+		<PackageOutputPath>..\..\..\..\.nuget\packages\</PackageOutputPath>
+		<Version>1.0.3</Version>
+	</PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="SpecFlow.MsTest" Version="3.4.8" />
+  </ItemGroup>
+
+</Project>

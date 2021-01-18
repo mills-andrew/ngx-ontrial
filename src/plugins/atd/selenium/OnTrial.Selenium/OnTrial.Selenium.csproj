@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>netcoreapp3.1</TargetFramework>
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+		<PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+		<Authors>Andrew Mills</Authors>
+		<Company>CSC-SCC</Company>
+		<PackageOutputPath>..\..\..\..\..\.nuget\packages\</PackageOutputPath>
+		<Version>1.0.3</Version>
+	</PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Selenium.WebDriver" Version="3.141.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\core\OnTrial.Web\OnTrial.Web.csproj" />
+  </ItemGroup>
+
+</Project>

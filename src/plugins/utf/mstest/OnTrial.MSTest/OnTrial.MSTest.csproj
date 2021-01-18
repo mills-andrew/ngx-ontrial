@@ -1,0 +1,22 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>netcoreapp3.1</TargetFramework>
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+		<PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+		<Authors>Andrew Mills</Authors>
+		<Company>CSC-SCC</Company>
+		<PackageOutputPath>..\..\..\..\..\.nuget\packages\</PackageOutputPath>
+		<Version>1.0.3</Version>
+	</PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MSTest.TestFramework" Version="2.1.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\core\OnTrial\OnTrial.csproj" />
+    <ProjectReference Include="..\..\..\workflow\OnTrial.Workflow\OnTrial.Workflow.csproj" />
+  </ItemGroup>
+
+</Project>
