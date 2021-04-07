@@ -3,6 +3,9 @@ using OnTrial.IOC;
 
 namespace OnTrial.Workflow.Desktop
 {
+    /// <summary>
+    /// Author: Andrew Mills
+    /// </summary>
     public static class DesktopConstructionExtensions
     {
         /// <summary>

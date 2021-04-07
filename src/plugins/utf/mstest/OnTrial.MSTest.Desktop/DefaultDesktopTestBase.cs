@@ -7,7 +7,7 @@ using System.Linq;
 
 namespace OnTrial.MSTest.Desktop
 {
-    public class DesktopTests : MSTestBase
+    public class DefaultDesktopTestBase : MSTestBase
     {
         protected IDesktopAgent mAgent;
 

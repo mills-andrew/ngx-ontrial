@@ -1,5 +1,4 @@
 ﻿using OnTrial.Logger;
-using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Text;
@@ -231,12 +230,12 @@ namespace OnTrial.Web.Default
         /// </summary>
         /// <param name="pElement"></param>
         /// <returns></returns>
-        public byte[] TakeScreenshot(IWebElement pElement)
+        public byte[] TakeScreenshot()
         {
             Log.Information("Taking screenshot...");
             return Encoding.ASCII.GetBytes(this.agent.ExecuteEndPoint(WebCommand.TakeElementScreenshot, new Dictionary<string, object>()
             {
-                { "id", pElement.Id }
+                { "id", this.Id }
             })["value"].ToString());
         }
 

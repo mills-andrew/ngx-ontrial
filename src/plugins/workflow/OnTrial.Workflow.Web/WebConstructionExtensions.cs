@@ -3,6 +3,9 @@ using OnTrial.IOC;
 
 namespace OnTrial.Workflow.Web
 {
+    /// <summary>
+    /// Author: Andrew Mills
+    /// </summary>
     public static class WebConstructionExtensions
     {
         /// <summary>
@@ -16,6 +19,11 @@ namespace OnTrial.Workflow.Web
             return pConstruction;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="pConstruction"></param>
+        /// <returns></returns>
         public static BaseConstruction UseSeleniumWebBehavior(this BaseConstruction pConstruction)
         {
             pConstruction.Services.AddScoped<WorkflowPlugin, SeleniumWorkflowPlugin>();

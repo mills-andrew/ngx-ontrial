@@ -16,6 +16,30 @@ namespace OnTrial.Workflow.Desktop
 
         #region TestSuite Subscription(s)
 
+        protected override void PreTestSuiteInit(object sender, WorkflowEventArgs e)
+        {
+            Log.Information("Pre-Test Suite Initializer");
+        }
+
+        protected override void PostTestSuiteInit(object sender, WorkflowEventArgs e)
+        {
+            Log.Information("Post-Test Suite Initializer");
+        }
+
+        protected override void PreTestSuiteCleanup(object sender, WorkflowEventArgs e)
+        {
+            Log.Information("Pre-Test Suite Cleanup");
+        }
+
+        protected override void PostTestSuiteCleanup(object sender, WorkflowEventArgs e)
+        {
+            Log.Information("Post-Test Suite Cleanup");
+        }
+
+        #endregion
+
+        #region TestCase Subscription(s)
+
         protected override void PreTestCaseInit(object sender, WorkflowEventArgs e)
         {
             Log.Information("Pre-Test Case Initializer");

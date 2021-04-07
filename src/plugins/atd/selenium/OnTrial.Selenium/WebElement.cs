@@ -48,7 +48,7 @@ namespace OnTrial.Selenium
 
         public void SendKeys(string pText) => element.SendKeys(pText);
 
-        public byte[] TakeScreenshot(Web.IWebElement pElement)
+        public byte[] TakeScreenshot()
         {
             throw new NotSupportedException();
         }

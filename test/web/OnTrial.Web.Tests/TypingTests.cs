@@ -8,7 +8,10 @@ namespace OnTrial.Web.Tests
     public class TypingTests : DefaultWebTestBase
     {
         [TestCase]
-        public void ShouldFireKeyPressEvents() => Assert.Inconclusive("Testcase not complete."); 
+        public void ShouldFireKeyPressEvents() => Assert.Inconclusive("Testcase not complete.");
+
+        [TestCase]
+        public void ShouldFireKeyPressEvents_INCHROME() => Assert.Inconclusive("Testcase not complete.");
 
         [TestCase]
         public void ShouldFireKeyDownEvents() => Assert.Inconclusive("Testcase not complete."); 

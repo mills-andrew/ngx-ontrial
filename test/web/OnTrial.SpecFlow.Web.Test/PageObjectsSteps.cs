@@ -8,8 +8,6 @@ namespace OnTrial.SpecFlow.Web.Test
     public class PageObjectsSteps : WebSteps
     {
         [TestCase]
-        public void TestMethod1()
-        {
-        }
+        public void TestMethod1() => Assert.Inconclusive("Testcase not complete.");
     }
 }

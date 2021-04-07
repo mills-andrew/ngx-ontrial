@@ -1,5 +1,8 @@
 ﻿namespace OnTrial.Workflow
 {
+    /// <summary>
+    /// Author: Andrew Mills
+    /// </summary>
     public enum TestOutcome
     {
         Failed = 0,

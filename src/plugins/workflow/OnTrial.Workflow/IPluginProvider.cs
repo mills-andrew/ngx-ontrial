@@ -2,8 +2,31 @@
 
 namespace OnTrial.Workflow
 {
+    /// <summary>
+    /// Author: Andrew Mills
+    /// </summary>
     public interface IPluginProvider<TArgs>
     {
+        #region Framework Event(s)
+
+        event EventHandler<TArgs> PreFrameworkInitEvent;
+        event EventHandler<TArgs> PostFrameworkInitEvent;
+
+        event EventHandler<TArgs> PreFrameworkCleanupEvent;
+        event EventHandler<TArgs> PostFrameworkCleanupEvent;
+
+        #endregion
+
+        #region TestSuite Event(s)
+
+        event EventHandler<TArgs> PreTestSuiteInitEvent;
+        event EventHandler<TArgs> PostTestSuiteInitEvent;
+
+        event EventHandler<TArgs> PreTestSuiteCleanupEvent;
+        event EventHandler<TArgs> PostTestSuiteCleanupEvent;
+
+        #endregion
+
         #region TestCase Event(s)
 
         event EventHandler<TArgs> PreTestCaseInitEvent;
@@ -16,14 +39,14 @@ namespace OnTrial.Workflow
 
         #region Status Event(s)
 
-        event EventHandler<TArgs> PreTestPassedEvent;
-        event EventHandler<TArgs> PostTestPassedEvent;
+        event EventHandler<TArgs> PreTestCasePassedEvent;
+        event EventHandler<TArgs> PostTestCasePassedEvent;
 
-        event EventHandler<TArgs> PreTestInconclusiveEvent;
-        event EventHandler<TArgs> PostTestInconclusiveEvent;
+        event EventHandler<TArgs> PreTestCaseInconclusiveEvent;
+        event EventHandler<TArgs> PostTestCaseInconclusiveEvent;
 
-        event EventHandler<TArgs> PreTestFailedEvent;
-        event EventHandler<TArgs> PostTestFailedEvent;
+        event EventHandler<TArgs> PreTestCaseFailedEvent;
+        event EventHandler<TArgs> PostTestCaseFailedEvent;
 
         #endregion
     }

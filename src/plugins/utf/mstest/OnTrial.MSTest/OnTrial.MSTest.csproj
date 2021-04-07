@@ -15,6 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\..\core\OnTrial.Logger\OnTrial.Logger.csproj" />
     <ProjectReference Include="..\..\..\..\core\OnTrial\OnTrial.csproj" />
     <ProjectReference Include="..\..\..\workflow\OnTrial.Workflow\OnTrial.Workflow.csproj" />
   </ItemGroup>

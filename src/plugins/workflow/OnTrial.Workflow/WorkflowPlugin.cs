@@ -1,5 +1,8 @@
 ﻿namespace OnTrial.Workflow
 {
+    /// <summary>
+    /// Author: Andrew Mills
+    /// </summary>
     public class WorkflowPlugin
     {
         /// <summary>
@@ -8,6 +11,16 @@
         /// <param name="pProvider"></param>
         public void Subscribe(IPluginProvider<WorkflowEventArgs> pProvider)
         {
+            #region TestSuite Subscription(s)
+
+            pProvider.PreTestSuiteInitEvent += PreTestSuiteInit;
+            pProvider.PostTestSuiteInitEvent += PostTestSuiteInit;
+
+            pProvider.PreTestSuiteCleanupEvent += PreTestSuiteCleanup;
+            pProvider.PostTestSuiteCleanupEvent += PostTestSuiteCleanup;
+
+            #endregion
+
             #region TestCase Subscription(s)
 
             pProvider.PreTestCaseInitEvent += PreTestCaseInit;
@@ -20,14 +33,14 @@
 
             #region TestEvent Subscription(s)
 
-            pProvider.PreTestPassedEvent += PreTestPassedEvent;
-            pProvider.PostTestPassedEvent += PostTestPassedEvent;
+            pProvider.PreTestCasePassedEvent += PreTestPassedEvent;
+            pProvider.PostTestCasePassedEvent += PostTestPassedEvent;
 
-            pProvider.PreTestInconclusiveEvent += PreTestInconclusiveEvent;
-            pProvider.PostTestInconclusiveEvent += PostTestInconclusiveEvent;
+            pProvider.PreTestCaseInconclusiveEvent += PreTestInconclusiveEvent;
+            pProvider.PostTestCaseInconclusiveEvent += PostTestInconclusiveEvent;
 
-            pProvider.PreTestFailedEvent += PreTestFailedEvent;
-            pProvider.PostTestFailedEvent += PostTestFailedEvent;
+            pProvider.PreTestCaseFailedEvent += PreTestFailedEvent;
+            pProvider.PostTestCaseFailedEvent += PostTestFailedEvent;
          
             #endregion
         }
@@ -38,6 +51,16 @@
         /// <param name="pProvider"></param>
         public void Unsubscribe(IPluginProvider<WorkflowEventArgs> pProvider)
         {
+            #region TestSuite Subscription(s)
+
+            pProvider.PreTestSuiteInitEvent -= PreTestSuiteInit;
+            pProvider.PostTestSuiteInitEvent -= PostTestSuiteInit;
+
+            pProvider.PreTestSuiteCleanupEvent -= PreTestSuiteCleanup;
+            pProvider.PostTestSuiteCleanupEvent -= PostTestSuiteCleanup;
+
+            #endregion
+
             #region TestCase Subscription(s)
 
             pProvider.PreTestCaseInitEvent -= PreTestCaseInit;
@@ -50,18 +73,28 @@
 
             #region TestEvent Subscription(s)
 
-            pProvider.PreTestPassedEvent -= PreTestPassedEvent;
-            pProvider.PostTestPassedEvent -= PostTestPassedEvent;
+            pProvider.PreTestCasePassedEvent -= PreTestPassedEvent;
+            pProvider.PostTestCasePassedEvent -= PostTestPassedEvent;
 
-            pProvider.PreTestInconclusiveEvent -= PreTestInconclusiveEvent;
-            pProvider.PostTestInconclusiveEvent -= PostTestInconclusiveEvent;
+            pProvider.PreTestCaseInconclusiveEvent -= PreTestInconclusiveEvent;
+            pProvider.PostTestCaseInconclusiveEvent -= PostTestInconclusiveEvent;
 
-            pProvider.PreTestFailedEvent -= PreTestFailedEvent;
-            pProvider.PostTestFailedEvent -= PostTestFailedEvent;
+            pProvider.PreTestCaseFailedEvent -= PreTestFailedEvent;
+            pProvider.PostTestCaseFailedEvent -= PostTestFailedEvent;
 
             #endregion
         }
-        
+
+        #region TestSuite Subscription(s)
+
+        protected virtual void PreTestSuiteCleanup(object sender, WorkflowEventArgs e) { }
+        protected virtual void PostTestSuiteCleanup(object sender, WorkflowEventArgs e) { }
+
+        protected virtual void PreTestSuiteInit(object sender, WorkflowEventArgs e) { }
+        protected virtual void PostTestSuiteInit(object sender, WorkflowEventArgs e) { }
+
+        #endregion
+
         #region TestCase Subscription(s)
 
         protected virtual void PreTestCaseCleanup(object sender, WorkflowEventArgs e) { }

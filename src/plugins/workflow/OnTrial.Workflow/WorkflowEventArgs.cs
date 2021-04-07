@@ -5,6 +5,9 @@ using System.Reflection;
 
 namespace OnTrial.Workflow
 {
+    /// <summary>
+    /// Author: Andrew Mills
+    /// </summary>
     public class WorkflowEventArgs : System.EventArgs
     {
         #region Public Properties

@@ -10,11 +10,38 @@ using OnTrial.Web.Default.IE;
 
 namespace OnTrial.Workflow.Web
 {
+    /// <summary>
+    /// Author: Andrew Mills
+    /// </summary>
     public class DefaultWorkflowPlugin : WorkflowPlugin
     {
         public DefaultWorkflowPlugin() { }
-        
+
         #region Overriden Method(s)
+
+        #region TestSuite Subscription(s)
+
+        protected override void PreTestSuiteInit(object sender, WorkflowEventArgs e)
+        { 
+            Log.Information("Pre-Test Suite Initializer"); 
+        }
+
+        protected override void PostTestSuiteInit(object sender, WorkflowEventArgs e)
+        { 
+            Log.Information("Post-Test Suite Initializer"); 
+        }
+
+        protected override void PreTestSuiteCleanup(object sender, WorkflowEventArgs e)
+        { 
+            Log.Information("Pre-Test Suite Cleanup"); 
+        }
+
+        protected override void PostTestSuiteCleanup(object sender, WorkflowEventArgs e)
+        { 
+            Log.Information("Post-Test Suite Cleanup"); 
+        }
+
+        #endregion
 
         #region TestCase Subscription(s)
 
@@ -75,7 +102,7 @@ namespace OnTrial.Workflow.Web
                 }
                 else
                 {
-                    var browserType = e.Properties["browser.default"].ToString().ToEnum<BrowserType>();
+                    var browserType = e.Properties["browser.default"]?.ToString().ToEnum<BrowserType>() ?? BrowserType.Chrome;
                     switch (browserType)
                     {
                         case BrowserType.Chrome:

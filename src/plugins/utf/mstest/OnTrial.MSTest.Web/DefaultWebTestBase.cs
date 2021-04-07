@@ -20,9 +20,10 @@ namespace OnTrial.MSTest.Web
                 .AddMSTestAssert()
                 .Build();
 
-            if (Context.Properties["atd.web.type"].ToString() == "selenium")
+            string webType = Context.Properties["atd.web.type"]?.ToString() ?? "default";
+            if (webType == "selenium")
                 Framework.Construct().UseSeleniumWebBehavior().Build();
-            else if (Context.Properties["atd.web.type"].ToString() == "default")
+            else if (webType == "default")
                 Framework.Construct().UseDefaultWebBehavior().Build();
             else
             {
@@ -31,7 +32,7 @@ namespace OnTrial.MSTest.Web
             }
         }
 
-        public override void TestInitialize()
+        public override void TestCaseInitialize()
         {
             mAgent = Framework.Provider.GetServices<IWebAgent>().First(m => m.Id == Context.FullTestName);
         }

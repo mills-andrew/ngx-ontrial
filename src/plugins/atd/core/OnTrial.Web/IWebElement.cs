@@ -85,9 +85,8 @@ namespace OnTrial.Web
         /// <summary>
         /// <see cref="https://w3c.github.io/webdriver/#take-element-screenshot"/>
         /// </summary>
-        /// <param name="pElement"></param>
         /// <returns></returns>
-        public byte[] TakeScreenshot(IWebElement pElement);
+        public byte[] TakeScreenshot();
 
         #endregion
 
