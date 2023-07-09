@@ -66,7 +66,7 @@ const themes = {
 const config = {
 	darkMode: 'class',
 	content: [
-		'./**/*.{html,scss,ts}'
+		'./projects/**/*.{html,scss,ts}'
 	],
 	important: true,
 	theme: {
