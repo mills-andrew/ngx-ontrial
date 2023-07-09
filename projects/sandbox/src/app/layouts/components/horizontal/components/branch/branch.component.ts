@@ -4,31 +4,31 @@ import { ChangeDetectionStrategy, ChangeDetectorRef, Component, forwardRef, Inpu
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenu, MatMenuModule } from '@angular/material/menu';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { OntrialHorizontalNavigationBasicItemComponent } from '../../../horizontal/components/basic/basic.component';
-import { OntrialHorizontalNavigationDividerItemComponent } from '../../../horizontal/components/divider/divider.component';
-import { OntrialHorizontalNavigationComponent } from '../../../horizontal/horizontal.component';
-import { OntrialNavigationService } from '../../../../services/navigation.service';
+import { HorizontalNavigationBasicItemComponent } from '../../../horizontal/components/basic/basic.component';
+import { HorizontalNavigationDividerItemComponent } from '../../../horizontal/components/divider/divider.component';
+import { HorizontalNavigationComponent } from '../../../horizontal/horizontal.component';
+import { NavigationEntityService } from '../../../../common/navigation-entity.service';
 import { Subject, takeUntil } from 'rxjs';
-import { NavigationItem } from '../../../../common';
+import { NavigationEntity } from '../../../../common';
 
 @Component({
 	selector: 'ontrial-horizontal-navigation-branch-item',
 	templateUrl: './branch.component.html',
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	standalone: true,
-	imports: [NgIf, NgClass, MatMenuModule, NgTemplateOutlet, NgFor, OntrialHorizontalNavigationBasicItemComponent, forwardRef(() => OntrialHorizontalNavigationBranchItemComponent), OntrialHorizontalNavigationDividerItemComponent, MatTooltipModule, MatIconModule],
+	imports: [NgIf, NgClass, MatMenuModule, NgTemplateOutlet, NgFor, HorizontalNavigationBasicItemComponent, forwardRef(() => HorizontalNavigationBranchItemComponent), HorizontalNavigationDividerItemComponent, MatTooltipModule, MatIconModule],
 })
-export class OntrialHorizontalNavigationBranchItemComponent implements OnInit, OnDestroy {
+export class HorizontalNavigationBranchItemComponent implements OnInit, OnDestroy {
 	/* eslint-disable @typescript-eslint/naming-convention */
 	static ngAcceptInputType_child: BooleanInput;
 	/* eslint-enable @typescript-eslint/naming-convention */
 
 	@Input() child: boolean = false;
-	@Input() item!: NavigationItem;
+	@Input() item!: NavigationEntity;
 	@Input() name!: string;
 	@ViewChild('matMenu', { static: true }) matMenu!: MatMenu;
 
-	private _ontrialHorizontalNavigationComponent!: OntrialHorizontalNavigationComponent;
+	private _ontrialHorizontalNavigationComponent!: HorizontalNavigationComponent;
 	private _unsubscribeAll: Subject<any> = new Subject<any>();
 
 	/**
@@ -36,7 +36,7 @@ export class OntrialHorizontalNavigationBranchItemComponent implements OnInit, O
 	 */
 	constructor(
 		private _changeDetectorRef: ChangeDetectorRef,
-		private _ontrialNavigationService: OntrialNavigationService,
+		private _ontrialNavigationService: NavigationEntityService,
 	) {
 	}
 

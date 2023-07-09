@@ -4,9 +4,9 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { IsActiveMatchOptions, RouterLink, RouterLinkActive } from '@angular/router';
-import { OntrialHorizontalNavigationComponent } from '../../../horizontal/horizontal.component';
-import { OntrialNavigationService } from '../../../../services/navigation.service';
-import { NavigationItem } from '../../../../common';
+import { HorizontalNavigationComponent } from '../../../horizontal/horizontal.component';
+import { NavigationEntityService } from '../../../../common/navigation-entity.service';
+import { NavigationEntity } from '../../../../common';
 import { UtilsService } from '@ngx-ontrial/core';
 import { Subject, takeUntil } from 'rxjs';
 
@@ -17,12 +17,12 @@ import { Subject, takeUntil } from 'rxjs';
 	standalone: true,
 	imports: [NgClass, NgIf, RouterLink, RouterLinkActive, MatTooltipModule, NgTemplateOutlet, MatMenuModule, MatIconModule],
 })
-export class OntrialHorizontalNavigationBasicItemComponent implements OnInit, OnDestroy {
-	@Input() item!: NavigationItem;
+export class HorizontalNavigationBasicItemComponent implements OnInit, OnDestroy {
+	@Input() item!: NavigationEntity;
 	@Input() name!: string;
 
 	isActiveMatchOptions: IsActiveMatchOptions;
-	private _ontrialHorizontalNavigationComponent!: OntrialHorizontalNavigationComponent;
+	private _ontrialHorizontalNavigationComponent!: HorizontalNavigationComponent;
 	private _unsubscribeAll: Subject<any> = new Subject<any>();
 
 	/**
@@ -30,7 +30,7 @@ export class OntrialHorizontalNavigationBasicItemComponent implements OnInit, On
 	 */
 	constructor(
 		private _changeDetectorRef: ChangeDetectorRef,
-		private _ontrialNavigationService: OntrialNavigationService,
+		private _ontrialNavigationService: NavigationEntityService,
 		private _UtilsService: UtilsService,
 	) {
 		// Set the equivalent of {exact: false} as default for active match options.

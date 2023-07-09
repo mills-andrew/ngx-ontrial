@@ -5,10 +5,10 @@ import { MatIconModule } from '@angular/material/icon';
 import { ActivatedRoute, Router, RouterOutlet } from '@angular/router';
 import { LoadingBarComponent } from '@ngx-ontrial/material';
 import { MediaWatcherService } from '@ngx-ontrial/core';
-import { Navigation } from '../../../common/';
-import { OntrialNavigationService } from '../../../services/navigation.service';
-import { OntrialVerticalNavigationComponent } from '../../../components/vertical/vertical.component';
-import { OntrialHorizontalNavigationComponent } from '../../../components/horizontal/horizontal.component';
+import { INavigation } from '../../../common/';
+import { NavigationEntityService } from '../../../common/navigation-entity.service';
+import { VerticalNavigationComponent } from '../../../components/vertical/vertical.component';
+import { HorizontalNavigationComponent } from '../../../components/horizontal/horizontal.component';
 import { Subject, takeUntil } from 'rxjs';
 
 @Component({
@@ -16,10 +16,10 @@ import { Subject, takeUntil } from 'rxjs';
 	templateUrl: './centered.component.html',
 	encapsulation: ViewEncapsulation.None,
 	standalone: true,
-	imports: [LoadingBarComponent, NgIf, OntrialVerticalNavigationComponent, OntrialHorizontalNavigationComponent, MatButtonModule, MatIconModule, RouterOutlet],
+	imports: [LoadingBarComponent, NgIf, VerticalNavigationComponent, HorizontalNavigationComponent, MatButtonModule, MatIconModule, RouterOutlet],
 })
 export class CenteredLayoutComponent implements OnInit, OnDestroy {
-	navigation!: Navigation;
+	navigation!: INavigation;
 	isScreenSmall!: boolean;
 	private _unsubscribeAll: Subject<any> = new Subject<any>();
 
@@ -29,9 +29,9 @@ export class CenteredLayoutComponent implements OnInit, OnDestroy {
 	constructor(
 		private _activatedRoute: ActivatedRoute,
 		private _router: Router,
-		private _navigationService: OntrialNavigationService,
+		private _navigationService: NavigationEntityService,
 		private _MediaWatcherService: MediaWatcherService,
-		private _ontrialNavigationService: OntrialNavigationService,
+		private _ontrialNavigationService: NavigationEntityService,
 	) {
 	}
 
@@ -90,7 +90,7 @@ export class CenteredLayoutComponent implements OnInit, OnDestroy {
 	 */
 	toggleNavigation(name: string): void {
 		// Get the navigation
-		const navigation = this._ontrialNavigationService.getComponent<OntrialVerticalNavigationComponent>(name);
+		const navigation = this._ontrialNavigationService.getComponent<VerticalNavigationComponent>(name);
 
 		if (navigation) {
 			// Toggle the opened status

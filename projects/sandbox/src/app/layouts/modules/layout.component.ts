@@ -1,7 +1,7 @@
 import { DOCUMENT, NgIf } from '@angular/common';
 import { Component, Inject, OnDestroy, OnInit, Renderer2, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
-import { ONTRIAL_VERSION, OntrialConfig, OntrialConfigService, MediaWatcherService, OntrialPlatformService } from '@ngx-ontrial/core';
+import { ONTRIAL_VERSION, OntrialConfig, ConfigService, MediaWatcherService, PlatformService } from '@ngx-ontrial/core';
 import { combineLatest, filter, map, Subject, takeUntil } from 'rxjs';
 import { EmptyLayoutComponent } from './empty/empty.component';
 import { CenteredLayoutComponent } from './horizontal/centered/centered.component';
@@ -38,9 +38,9 @@ export class LayoutComponent {
 		@Inject(DOCUMENT) private _document: any,
 		private _renderer2: Renderer2,
 		private _router: Router,
-		private _ontrialConfigService: OntrialConfigService,
-		private _MediaWatcherService: MediaWatcherService,
-		private _ontrialPlatformService: OntrialPlatformService,
+		private _configService: ConfigService,
+		private _mediaWatcherService: MediaWatcherService,
+		private _platformService: PlatformService,
 	) {
 	}
 
@@ -54,8 +54,8 @@ export class LayoutComponent {
 	ngOnInit(): void {
 		// Set the theme and scheme based on the configuration
 		combineLatest([
-			this._ontrialConfigService.config$,
-			this._MediaWatcherService.onMediaQueryChange$(['(prefers-color-scheme: dark)', '(prefers-color-scheme: light)']),
+			this._configService.config$,
+			this._mediaWatcherService.onMediaQueryChange$(['(prefers-color-scheme: dark)', '(prefers-color-scheme: light)']),
 		]).pipe(
 			takeUntil(this._unsubscribeAll),
 			map(([config, mql]) => {
@@ -83,7 +83,7 @@ export class LayoutComponent {
 		});
 
 		// Subscribe to config changes
-		this._ontrialConfigService.config$
+		this._configService.config$
 			.pipe(takeUntil(this._unsubscribeAll))
 			.subscribe((config: OntrialConfig) => {
 				// Store the config
@@ -106,7 +106,7 @@ export class LayoutComponent {
 		this._renderer2.setAttribute(this._document.querySelector('[ng-version]'), 'fuse-version', ONTRIAL_VERSION);
 
 		// Set the OS name
-		this._renderer2.addClass(this._document.body, this._ontrialPlatformService.osName);
+		this._renderer2.addClass(this._document.body, this._platformService.osName);
 	}
 
 	/**

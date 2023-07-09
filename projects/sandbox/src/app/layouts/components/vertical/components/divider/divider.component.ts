@@ -1,8 +1,8 @@
 import { NgClass } from '@angular/common';
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnDestroy, OnInit } from '@angular/core';
-import { OntrialNavigationService } from '../../../../services/navigation.service';
-import { NavigationItem } from '../../../../common';
-import { OntrialVerticalNavigationComponent } from '../../../vertical/vertical.component';
+import { NavigationEntityService } from '../../../../common/navigation-entity.service';
+import { NavigationEntity } from '../../../../common';
+import { VerticalNavigationComponent } from '../../../vertical/vertical.component';
 import { Subject, takeUntil } from 'rxjs';
 
 @Component({
@@ -12,11 +12,11 @@ import { Subject, takeUntil } from 'rxjs';
 	standalone: true,
 	imports: [NgClass],
 })
-export class OntrialVerticalNavigationDividerItemComponent implements OnInit, OnDestroy {
-	@Input() item!: NavigationItem;
+export class VerticalNavigationDividerItemComponent implements OnInit, OnDestroy {
+	@Input() item!: NavigationEntity;
 	@Input() name!: string;
 
-	private _ontrialVerticalNavigationComponent!: OntrialVerticalNavigationComponent;
+	private _ontrialVerticalNavigationComponent!: VerticalNavigationComponent;
 	private _unsubscribeAll: Subject<any> = new Subject<any>();
 
 	/**
@@ -24,7 +24,7 @@ export class OntrialVerticalNavigationDividerItemComponent implements OnInit, On
 	 */
 	constructor(
 		private _changeDetectorRef: ChangeDetectorRef,
-		private _ontrialNavigationService: OntrialNavigationService,
+		private _ontrialNavigationService: NavigationEntityService,
 	) {
 	}
 

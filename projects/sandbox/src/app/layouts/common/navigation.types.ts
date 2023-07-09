@@ -1,6 +1,6 @@
 import { IsActiveMatchOptions, Params, QueryParamsHandling } from '@angular/router';
 
-export interface NavigationItem {
+export interface NavigationEntity {
 	id?: string;
 	title?: string;
 	subtitle?: string;
@@ -11,7 +11,7 @@ export interface NavigationItem {
 	| 'divider'
 	| 'group'
 	| 'spacer';
-	hidden?: (item: NavigationItem) => boolean;
+	hidden?: (item: NavigationEntity) => boolean;
 	active?: boolean;
 	disabled?: boolean;
 	tooltip?: string;
@@ -29,7 +29,7 @@ export interface NavigationItem {
 	| string;
 	exactMatch?: boolean;
 	isActiveMatchOptions?: IsActiveMatchOptions;
-	function?: (item: NavigationItem) => void;
+	function?: (item: NavigationEntity) => void;
 	classes?: {
 		title?: string;
 		subtitle?: string;
@@ -41,20 +41,20 @@ export interface NavigationItem {
 		title?: string;
 		classes?: string;
 	};
-	children?: NavigationItem[];
+	children?: NavigationEntity[];
 	meta?: any;
 }
 
-export type OntrialVerticalNavigationAppearance =
+export type VerticalNavigationAppearance =
 	| 'default'
 	| 'compact'
 	| 'dense'
 	| 'thin';
 
-export type OntrialVerticalNavigationMode =
+export type VerticalNavigationMode =
 	| 'over'
 	| 'side';
 
-export type OntrialVerticalNavigationPosition =
+export type VerticalNavigationPosition =
 	| 'left'
 	| 'right';

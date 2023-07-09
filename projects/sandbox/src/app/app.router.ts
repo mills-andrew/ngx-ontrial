@@ -1,8 +1,8 @@
 import { Route } from '@angular/router';
 import { AuthGuard, NoAuthGuard } from '@ngx-ontrial/auth';
 import { initialDataResolver } from './app.resolver';
-//import { LayoutComponent } from './layouts/modules/layout.component';
-import { LayoutComponent } from '@ngx-ontrial/layout';
+import { LayoutComponent } from './layouts/modules/layout.component';
+//import { LayoutComponent } from '@ngx-ontrial/layout';
 
 // @formatter:off
 /* eslint-disable max-len */

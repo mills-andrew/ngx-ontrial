@@ -1,7 +1,7 @@
 import { inject } from '@angular/core';
 import { forkJoin } from 'rxjs';
-//import { NavigationService } from './layouts/common/navigationService';
-import { NavigationService } from '@ngx-ontrial/layout';
+import { NavigationService } from './layouts/common/navigation.service';
+//import { NavigationService } from '@ngx-ontrial/layout';
 
 
 export const initialDataResolver = () => {

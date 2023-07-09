@@ -6,20 +6,20 @@ import { ActivatedRoute, Router, RouterOutlet } from '@angular/router';
 import { LoadingBarComponent } from '@ngx-ontrial/material';
 import { MediaWatcherService } from '@ngx-ontrial/core';
 import { Subject, takeUntil } from 'rxjs';
-import { Navigation } from '../../../common/';
-import { OntrialVerticalNavigationComponent } from '../../../components/vertical/vertical.component';
-import { OntrialNavigationService } from '../../../services/navigation.service';
+import { INavigation } from '../../../common/';
+import { VerticalNavigationComponent } from '../../../components/vertical/vertical.component';
+import { NavigationEntityService } from '../../../common/navigation-entity.service';
 
 @Component({
 	selector: 'thin-layout',
 	templateUrl: './thin.component.html',
 	encapsulation: ViewEncapsulation.None,
 	standalone: true,
-	imports: [LoadingBarComponent, OntrialVerticalNavigationComponent, MatButtonModule, MatIconModule, NgIf, RouterOutlet],
+	imports: [LoadingBarComponent, VerticalNavigationComponent, MatButtonModule, MatIconModule, NgIf, RouterOutlet],
 })
 export class ThinLayoutComponent implements OnInit, OnDestroy {
 	isScreenSmall!: boolean;
-	navigation!: Navigation;
+	navigation!: INavigation;
 	private _unsubscribeAll: Subject<any> = new Subject<any>();
 
 	/**
@@ -28,9 +28,9 @@ export class ThinLayoutComponent implements OnInit, OnDestroy {
 	constructor(
 		private _activatedRoute: ActivatedRoute,
 		private _router: Router,
-		private _navigationService: OntrialNavigationService,
+		private _navigationService: NavigationEntityService,
 		private _MediaWatcherService: MediaWatcherService,
-		private _ontrialNavigationService: OntrialNavigationService,
+		private _ontrialNavigationService: NavigationEntityService,
 	) {
 	}
 
@@ -89,7 +89,7 @@ export class ThinLayoutComponent implements OnInit, OnDestroy {
 	 */
 	toggleNavigation(name: string): void {
 		// Get the navigation
-		const navigation = this._ontrialNavigationService.getComponent<OntrialVerticalNavigationComponent>(name);
+		const navigation = this._ontrialNavigationService.getComponent<VerticalNavigationComponent>(name);
 
 		if (navigation) {
 			// Toggle the opened status

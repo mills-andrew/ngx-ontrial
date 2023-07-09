@@ -6,13 +6,13 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { NavigationEnd, Router } from '@angular/router';
 import { ontrialAnimations } from '@ngx-ontrial/common';
 import { filter, Subject, takeUntil } from 'rxjs';
-import { OntrialVerticalNavigationComponent } from '../../vertical.component';
-import { OntrialVerticalNavigationBasicItemComponent } from '../basic/basic.component';
-import { OntrialVerticalNavigationDividerItemComponent } from '../divider/divider.component';
-import { OntrialVerticalNavigationGroupItemComponent } from '../group/group.component';
-import { OntrialVerticalNavigationSpacerItemComponent } from '../spacer/spacer.component';
-import { OntrialNavigationService } from '../../../../services/navigation.service';
-import { NavigationItem } from '../../../../common';
+import { VerticalNavigationComponent } from '../../vertical.component';
+import { VerticalNavigationBasicItemComponent } from '../basic/basic.component';
+import { VerticalNavigationDividerItemComponent } from '../divider/divider.component';
+import { VerticalNavigationGroupItemComponent } from '../group/group.component';
+import { VerticalNavigationSpacerItemComponent } from '../spacer/spacer.component';
+import { NavigationEntityService } from '../../../../common/navigation-entity.service';
+import { NavigationEntity } from '../../../../common';
 
 @Component({
 	selector: 'ontrial-vertical-navigation-collapsable-item',
@@ -20,20 +20,20 @@ import { NavigationItem } from '../../../../common';
 	animations: ontrialAnimations,
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	standalone: true,
-	imports: [NgClass, MatTooltipModule, NgIf, MatIconModule, NgFor, OntrialVerticalNavigationBasicItemComponent, forwardRef(() => OntrialVerticalNavigationCollapsableItemComponent), OntrialVerticalNavigationDividerItemComponent, OntrialVerticalNavigationGroupItemComponent, OntrialVerticalNavigationSpacerItemComponent],
+	imports: [NgClass, MatTooltipModule, NgIf, MatIconModule, NgFor, VerticalNavigationBasicItemComponent, VerticalNavigationDividerItemComponent, VerticalNavigationGroupItemComponent, VerticalNavigationSpacerItemComponent],
 })
-export class OntrialVerticalNavigationCollapsableItemComponent implements OnInit, OnDestroy {
+export class VerticalNavigationCollapsableItemComponent implements OnInit, OnDestroy {
 	/* eslint-disable @typescript-eslint/naming-convention */
 	static ngAcceptInputType_autoCollapse: BooleanInput;
 	/* eslint-enable @typescript-eslint/naming-convention */
 
 	@Input() autoCollapse!: boolean;
-	@Input() item!: NavigationItem;
+	@Input() item!: NavigationEntity;
 	@Input() name!: string;
 
 	isCollapsed: boolean = true;
 	isExpanded: boolean = false;
-	private _ontrialVerticalNavigationComponent!: OntrialVerticalNavigationComponent;
+	private _ontrialVerticalNavigationComponent!: VerticalNavigationComponent;
 	private _unsubscribeAll: Subject<any> = new Subject<any>();
 
 	/**
@@ -42,7 +42,7 @@ export class OntrialVerticalNavigationCollapsableItemComponent implements OnInit
 	constructor(
 		private _changeDetectorRef: ChangeDetectorRef,
 		private _router: Router,
-		private _ontrialNavigationService: OntrialNavigationService,
+		private _ontrialNavigationService: NavigationEntityService,
 	) {
 	}
 
@@ -257,7 +257,7 @@ export class OntrialVerticalNavigationCollapsableItemComponent implements OnInit
 	 * @param currentUrl
 	 * @private
 	 */
-	private _hasActiveChild(item: NavigationItem, currentUrl: string): boolean {
+	private _hasActiveChild(item: NavigationEntity, currentUrl: string): boolean {
 		const children = item.children;
 
 		if (!children) {
@@ -288,7 +288,7 @@ export class OntrialVerticalNavigationCollapsableItemComponent implements OnInit
 	 * @param item
 	 * @private
 	 */
-	private _isChildrenOf(parent: NavigationItem, item: NavigationItem): boolean {
+	private _isChildrenOf(parent: NavigationEntity, item: NavigationEntity): boolean {
 		const children = parent.children;
 
 		if (!children) {

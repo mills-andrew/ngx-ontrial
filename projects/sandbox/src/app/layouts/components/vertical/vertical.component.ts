@@ -5,14 +5,14 @@ import { DOCUMENT, NgFor, NgIf } from '@angular/common';
 import { AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, EventEmitter, HostBinding, HostListener, Inject, Input, OnChanges, OnDestroy, OnInit, Output, QueryList, Renderer2, SimpleChanges, ViewChild, ViewChildren, ViewEncapsulation } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { ScrollbarDirective, UtilsService } from '@ngx-ontrial/core';
-import { OntrialNavigationService } from '../../services/navigation.service';
-import { OntrialVerticalNavigationAppearance, OntrialVerticalNavigationMode, NavigationItem, OntrialVerticalNavigationPosition } from '../../common';
-import { OntrialVerticalNavigationAsideItemComponent } from '../vertical/components/aside/aside.component';
-import { OntrialVerticalNavigationBasicItemComponent } from '../vertical/components/basic/basic.component';
-import { OntrialVerticalNavigationCollapsableItemComponent } from '../vertical/components/collapsable/collapsable.component';
-import { OntrialVerticalNavigationDividerItemComponent } from '../vertical/components/divider/divider.component';
-import { OntrialVerticalNavigationGroupItemComponent } from '../vertical/components/group/group.component';
-import { OntrialVerticalNavigationSpacerItemComponent } from '../vertical/components/spacer/spacer.component';
+import { NavigationEntityService } from '../../common/navigation-entity.service';
+import { VerticalNavigationAppearance, VerticalNavigationMode, NavigationEntity, VerticalNavigationPosition } from '../../common';
+import { VerticalNavigationAsideItemComponent } from '../vertical/components/aside/aside.component';
+import { VerticalNavigationBasicItemComponent } from '../vertical/components/basic/basic.component';
+import { VerticalNavigationCollapsableItemComponent } from '../vertical/components/collapsable/collapsable.component';
+import { VerticalNavigationDividerItemComponent } from '../vertical/components/divider/divider.component';
+import { VerticalNavigationGroupItemComponent } from '../vertical/components/group/group.component';
+import { VerticalNavigationSpacerItemComponent } from '../vertical/components/spacer/spacer.component';
 import { delay, filter, merge, ReplaySubject, Subject, Subscription, takeUntil } from 'rxjs';
 import { ontrialAnimations } from '@ngx-ontrial/common';
 
@@ -25,33 +25,33 @@ import { ontrialAnimations } from '@ngx-ontrial/common';
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	exportAs: 'ontrialVerticalNavigation',
 	standalone: true,
-	imports: [ScrollbarDirective, NgFor, NgIf, OntrialVerticalNavigationAsideItemComponent, OntrialVerticalNavigationBasicItemComponent, OntrialVerticalNavigationCollapsableItemComponent, OntrialVerticalNavigationDividerItemComponent, OntrialVerticalNavigationGroupItemComponent, OntrialVerticalNavigationSpacerItemComponent],
+	imports: [ScrollbarDirective, NgFor, NgIf, VerticalNavigationAsideItemComponent, VerticalNavigationBasicItemComponent, VerticalNavigationCollapsableItemComponent, VerticalNavigationDividerItemComponent, VerticalNavigationGroupItemComponent, VerticalNavigationSpacerItemComponent],
 })
-export class OntrialVerticalNavigationComponent implements OnChanges, OnInit, AfterViewInit, OnDestroy {
+export class VerticalNavigationComponent implements OnChanges, OnInit, AfterViewInit, OnDestroy {
 	/* eslint-disable @typescript-eslint/naming-convention */
 	static ngAcceptInputType_inner: BooleanInput;
 	static ngAcceptInputType_opened: BooleanInput;
 	static ngAcceptInputType_transparentOverlay: BooleanInput;
 	/* eslint-enable @typescript-eslint/naming-convention */
 
-	@Input() appearance: OntrialVerticalNavigationAppearance = 'default';
+	@Input() appearance: VerticalNavigationAppearance = 'default';
 	@Input() autoCollapse: boolean = true;
 	@Input() inner: boolean = false;
-	@Input() mode: OntrialVerticalNavigationMode = 'side';
+	@Input() mode: VerticalNavigationMode = 'side';
 	@Input() name: string = this._UtilsService.randomId();
-	@Input() navigation!: NavigationItem[];
+	@Input() navigation!: NavigationEntity[];
 	@Input() opened: boolean = true;
-	@Input() position: OntrialVerticalNavigationPosition = 'left';
+	@Input() position: VerticalNavigationPosition = 'left';
 	@Input() transparentOverlay: boolean = false;
-	@Output() readonly appearanceChanged: EventEmitter<OntrialVerticalNavigationAppearance> = new EventEmitter<OntrialVerticalNavigationAppearance>();
-	@Output() readonly modeChanged: EventEmitter<OntrialVerticalNavigationMode> = new EventEmitter<OntrialVerticalNavigationMode>();
+	@Output() readonly appearanceChanged: EventEmitter<VerticalNavigationAppearance> = new EventEmitter<VerticalNavigationAppearance>();
+	@Output() readonly modeChanged: EventEmitter<VerticalNavigationMode> = new EventEmitter<VerticalNavigationMode>();
 	@Output() readonly openedChanged: EventEmitter<boolean> = new EventEmitter<boolean>();
-	@Output() readonly positionChanged: EventEmitter<OntrialVerticalNavigationPosition> = new EventEmitter<OntrialVerticalNavigationPosition>();
+	@Output() readonly positionChanged: EventEmitter<VerticalNavigationPosition> = new EventEmitter<VerticalNavigationPosition>();
 	@ViewChild('navigationContent') private _navigationContentEl!: ElementRef;
 
 	activeAsideItemId: string | null = null;
-	onCollapsableItemCollapsed: ReplaySubject<NavigationItem> = new ReplaySubject<NavigationItem>(1);
-	onCollapsableItemExpanded: ReplaySubject<NavigationItem> = new ReplaySubject<NavigationItem>(1);
+	onCollapsableItemCollapsed: ReplaySubject<NavigationEntity> = new ReplaySubject<NavigationEntity>(1);
+	onCollapsableItemExpanded: ReplaySubject<NavigationEntity> = new ReplaySubject<NavigationEntity>(1);
 	onRefreshed: ReplaySubject<boolean> = new ReplaySubject<boolean>(1);
 	private _animationsEnabled: boolean = false;
 	private _asideOverlay: HTMLElement | null = null;
@@ -77,7 +77,7 @@ export class OntrialVerticalNavigationComponent implements OnChanges, OnInit, Af
 		private _renderer2: Renderer2,
 		private _router: Router,
 		private _scrollStrategyOptions: ScrollStrategyOptions,
-		private _ontrialNavigationService: OntrialNavigationService,
+		private _ontrialNavigationService: NavigationEntityService,
 		private _UtilsService: UtilsService,
 	) {
 		this._handleAsideOverlayClick = (): void => {
@@ -452,7 +452,7 @@ export class OntrialVerticalNavigationComponent implements OnChanges, OnInit, Af
 	 *
 	 * @param item
 	 */
-	openAside(item: NavigationItem): void {
+	openAside(item: NavigationEntity): void {
 		// Return if the item is disabled
 		if (item.disabled || !item.id) {
 			return;
@@ -487,7 +487,7 @@ export class OntrialVerticalNavigationComponent implements OnChanges, OnInit, Af
 	 *
 	 * @param item
 	 */
-	toggleAside(item: NavigationItem): void {
+	toggleAside(item: NavigationEntity): void {
 		// Toggle
 		if (this.activeAsideItemId === item.id) {
 			this.closeAside();

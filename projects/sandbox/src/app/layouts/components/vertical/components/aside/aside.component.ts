@@ -4,24 +4,24 @@ import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnChanges
 import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { NavigationEnd, Router } from '@angular/router';
-import { OntrialNavigationService } from '../../../../services/navigation.service';
-import { OntrialVerticalNavigationBasicItemComponent } from '../../../vertical/components/basic/basic.component';
-import { OntrialVerticalNavigationCollapsableItemComponent } from '../../../vertical/components/collapsable/collapsable.component';
-import { OntrialVerticalNavigationDividerItemComponent } from '../../../vertical/components/divider/divider.component';
-import { OntrialVerticalNavigationGroupItemComponent } from '../../../vertical/components/group/group.component';
-import { OntrialVerticalNavigationSpacerItemComponent } from '../../../vertical/components/spacer/spacer.component';
-import { OntrialVerticalNavigationComponent } from '../../../vertical/vertical.component';
+import { NavigationEntityService } from '../../../../common/navigation-entity.service';
+import { VerticalNavigationBasicItemComponent } from '../../../vertical/components/basic/basic.component';
+import { VerticalNavigationCollapsableItemComponent } from '../../../vertical/components/collapsable/collapsable.component';
+import { VerticalNavigationDividerItemComponent } from '../../../vertical/components/divider/divider.component';
+import { VerticalNavigationGroupItemComponent } from '../../../vertical/components/group/group.component';
+import { VerticalNavigationSpacerItemComponent } from '../../../vertical/components/spacer/spacer.component';
+import { VerticalNavigationComponent } from '../../../vertical/vertical.component';
 import { filter, Subject, takeUntil } from 'rxjs';
-import { NavigationItem } from '../../../../common';
+import { NavigationEntity } from '../../../../common';
 
 @Component({
 	selector: 'ontrial-vertical-navigation-aside-item',
 	templateUrl: './aside.component.html',
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	standalone: true,
-	imports: [NgClass, MatTooltipModule, NgIf, MatIconModule, NgFor, OntrialVerticalNavigationBasicItemComponent, OntrialVerticalNavigationCollapsableItemComponent, OntrialVerticalNavigationDividerItemComponent, OntrialVerticalNavigationGroupItemComponent, OntrialVerticalNavigationSpacerItemComponent],
+	imports: [NgClass, MatTooltipModule, NgIf, MatIconModule, NgFor, VerticalNavigationBasicItemComponent, VerticalNavigationCollapsableItemComponent, VerticalNavigationDividerItemComponent, VerticalNavigationGroupItemComponent, VerticalNavigationSpacerItemComponent],
 })
-export class OntrialVerticalNavigationAsideItemComponent implements OnChanges, OnInit, OnDestroy {
+export class VerticalNavigationAsideItemComponent implements OnChanges, OnInit, OnDestroy {
 	/* eslint-disable @typescript-eslint/naming-convention */
 	static ngAcceptInputType_autoCollapse: BooleanInput;
 	static ngAcceptInputType_skipChildren: BooleanInput;
@@ -29,12 +29,12 @@ export class OntrialVerticalNavigationAsideItemComponent implements OnChanges, O
 
 	@Input() activeItemId: string | null = null;;
 	@Input() autoCollapse: boolean = false;
-	@Input() item!: NavigationItem;
+	@Input() item!: NavigationEntity;
 	@Input() name!: string;
 	@Input() skipChildren!: boolean;
 
 	active: boolean = false;
-	private _ontrialVerticalNavigationComponent!: OntrialVerticalNavigationComponent;
+	private _ontrialVerticalNavigationComponent!: VerticalNavigationComponent;
 	private _unsubscribeAll: Subject<any> = new Subject<any>();
 
 	/**
@@ -43,7 +43,7 @@ export class OntrialVerticalNavigationAsideItemComponent implements OnChanges, O
 	constructor(
 		private _changeDetectorRef: ChangeDetectorRef,
 		private _router: Router,
-		private _ontrialNavigationService: OntrialNavigationService,
+		private _ontrialNavigationService: NavigationEntityService,
 	) {
 	}
 
@@ -129,7 +129,7 @@ export class OntrialVerticalNavigationAsideItemComponent implements OnChanges, O
 	 * @param currentUrl
 	 * @private
 	 */
-	private _hasActiveChild(item: NavigationItem, currentUrl: string): boolean {
+	private _hasActiveChild(item: NavigationEntity, currentUrl: string): boolean {
 		const children = item.children;
 
 		if (!children) {

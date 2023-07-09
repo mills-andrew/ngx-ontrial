@@ -1,13 +1,13 @@
 import { NgFor, NgIf } from '@angular/common';
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges, ViewEncapsulation } from '@angular/core';
 import { ontrialAnimations } from '@ngx-ontrial/common';
-import { OntrialNavigationService } from '../../services/navigation.service';
+import { NavigationEntityService } from '../../common/navigation-entity.service';
 import { UtilsService } from '@ngx-ontrial/core';
 import { ReplaySubject, Subject } from 'rxjs';
-import { OntrialHorizontalNavigationBasicItemComponent } from './components/basic/basic.component';
-import { OntrialHorizontalNavigationBranchItemComponent } from './components/branch/branch.component';
-import { OntrialHorizontalNavigationSpacerItemComponent } from './components/spacer/spacer.component';
-import { NavigationItem } from '../../common/navigation.types';
+import { HorizontalNavigationBasicItemComponent } from './components/basic/basic.component';
+import { HorizontalNavigationBranchItemComponent } from './components/branch/branch.component';
+import { HorizontalNavigationSpacerItemComponent } from './components/spacer/spacer.component';
+import { NavigationEntity } from '../../common/navigation.types';
 
 @Component({
 	selector: 'ontrial-horizontal-navigation',
@@ -18,11 +18,11 @@ import { NavigationItem } from '../../common/navigation.types';
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	exportAs: 'ontrialHorizontalNavigation',
 	standalone: true,
-	imports: [NgFor, NgIf, OntrialHorizontalNavigationBasicItemComponent, OntrialHorizontalNavigationBranchItemComponent, OntrialHorizontalNavigationSpacerItemComponent],
+	imports: [NgFor, NgIf, HorizontalNavigationBasicItemComponent, HorizontalNavigationBranchItemComponent, HorizontalNavigationSpacerItemComponent],
 })
-export class OntrialHorizontalNavigationComponent implements OnChanges, OnInit, OnDestroy {
+export class HorizontalNavigationComponent implements OnChanges, OnInit, OnDestroy {
 	@Input() name: string = this._UtilsService.randomId();
-	@Input() navigation!: NavigationItem[];
+	@Input() navigation!: NavigationEntity[];
 
 	onRefreshed: ReplaySubject<boolean> = new ReplaySubject<boolean>(1);
 	private _unsubscribeAll: Subject<any> = new Subject<any>();
@@ -32,7 +32,7 @@ export class OntrialHorizontalNavigationComponent implements OnChanges, OnInit, 
 	 */
 	constructor(
 		private _changeDetectorRef: ChangeDetectorRef,
-		private _ontrialNavigationService: OntrialNavigationService,
+		private _ontrialNavigationService: NavigationEntityService,
 		private _UtilsService: UtilsService,
 	) {
 	}

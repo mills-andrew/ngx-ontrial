@@ -1,9 +1,9 @@
 import { NgClass } from '@angular/common';
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnDestroy, OnInit } from '@angular/core';
-import { OntrialHorizontalNavigationComponent } from '../../../horizontal/horizontal.component';
-import { OntrialNavigationService } from '../../../../services/navigation.service';
+import { HorizontalNavigationComponent } from '../../../horizontal/horizontal.component';
+import { NavigationEntityService } from '../../../../common/navigation-entity.service';
 import { Subject, takeUntil } from 'rxjs';
-import { NavigationItem } from '../../../../common';
+import { NavigationEntity } from '../../../../common';
 
 @Component({
 	selector: 'ontrial-horizontal-navigation-spacer-item',
@@ -12,11 +12,11 @@ import { NavigationItem } from '../../../../common';
 	standalone: true,
 	imports: [NgClass],
 })
-export class OntrialHorizontalNavigationSpacerItemComponent implements OnInit, OnDestroy {
-	@Input() item!: NavigationItem;
+export class HorizontalNavigationSpacerItemComponent implements OnInit, OnDestroy {
+	@Input() item!: NavigationEntity;
 	@Input() name!: string;
 
-	private _ontrialHorizontalNavigationComponent!: OntrialHorizontalNavigationComponent;
+	private _ontrialHorizontalNavigationComponent!: HorizontalNavigationComponent;
 	private _unsubscribeAll: Subject<any> = new Subject<any>();
 
 	/**
@@ -24,7 +24,7 @@ export class OntrialHorizontalNavigationSpacerItemComponent implements OnInit, O
 	 */
 	constructor(
 		private _changeDetectorRef: ChangeDetectorRef,
-		private _ontrialNavigationService: OntrialNavigationService,
+		private _ontrialNavigationService: NavigationEntityService,
 	) {
 	}
 

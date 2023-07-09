@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
-import { NavigationItem } from '../common';
+import { NavigationEntity } from '.';
 
 @Injectable({ providedIn: 'root' })
-export class OntrialNavigationService {
+export class NavigationEntityService {
 	private _componentRegistry: Map<string, any> = new Map<string, any>();
-	private _navigationStore: Map<string, NavigationItem[]> = new Map<string, any>();
+	private _navigationStore: Map<string, NavigationEntity[]> = new Map<string, any>();
 
 	/**
 	 * Constructor
@@ -50,7 +50,7 @@ export class OntrialNavigationService {
 	 * @param key
 	 * @param navigation
 	 */
-	storeNavigation(key: string, navigation: NavigationItem[]): void {
+	storeNavigation(key: string, navigation: NavigationEntity[]): void {
 		// Add to the store
 		this._navigationStore.set(key, navigation);
 	}
@@ -60,7 +60,7 @@ export class OntrialNavigationService {
 	 *
 	 * @param key
 	 */
-	getNavigation(key: string): NavigationItem[] {
+	getNavigation(key: string): NavigationEntity[] {
 		return this._navigationStore.get(key) ?? [];
 	}
 
@@ -86,7 +86,7 @@ export class OntrialNavigationService {
 	 * @param navigation
 	 * @param flatNavigation
 	 */
-	getFlatNavigation(navigation: NavigationItem[], flatNavigation: NavigationItem[] = []): NavigationItem[] {
+	getFlatNavigation(navigation: NavigationEntity[], flatNavigation: NavigationEntity[] = []): NavigationEntity[] {
 		for (const item of navigation) {
 			if (item.type === 'basic') {
 				flatNavigation.push(item);
@@ -110,7 +110,7 @@ export class OntrialNavigationService {
 	 * @param id
 	 * @param navigation
 	 */
-	getItem(id: string, navigation: NavigationItem[]): NavigationItem | null {
+	getItem(id: string, navigation: NavigationEntity[]): NavigationEntity | null {
 		if (navigation === null)
 			return null;
 
@@ -141,9 +141,9 @@ export class OntrialNavigationService {
 	 */
 	getItemParent(
 		id: string,
-		navigation: NavigationItem[],
-		parent: NavigationItem[] | NavigationItem,
-	): NavigationItem[] | NavigationItem | null {
+		navigation: NavigationEntity[],
+		parent: NavigationEntity[] | NavigationEntity,
+	): NavigationEntity[] | NavigationEntity | null {
 		for (const item of navigation) {
 			if (item.id === id) {
 				return parent;

@@ -4,23 +4,23 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { ActivatedRoute, Router, RouterOutlet } from '@angular/router';
 import { LoadingBarComponent } from '@ngx-ontrial/material';
-import { Navigation } from '../../../common/';
-import { OntrialVerticalNavigationComponent } from '../../../components/vertical/vertical.component';
-import { OntrialNavigationService } from '../../../services/navigation.service';
+import { INavigation } from '../../../common/';
+import { VerticalNavigationComponent } from '../../../components/vertical/vertical.component';
+import { NavigationEntityService } from '../../../common/navigation-entity.service';
 import { MediaWatcherService } from '@ngx-ontrial/core';
 import { Subject, takeUntil } from 'rxjs';
-import { NavigationService } from '../../../common/navigationService';
+import { NavigationService } from '../../../common/navigation.service';
 
 @Component({
 	selector: 'compact-layout',
 	templateUrl: './compact.component.html',
 	encapsulation: ViewEncapsulation.None,
 	standalone: true,
-	imports: [LoadingBarComponent, MatButtonModule, MatIconModule, NgIf, RouterOutlet, OntrialVerticalNavigationComponent],
+	imports: [LoadingBarComponent, MatButtonModule, MatIconModule, NgIf, RouterOutlet, VerticalNavigationComponent],
 })
 export class CompactLayoutComponent implements OnInit, OnDestroy {
 	isScreenSmall!: boolean;
-	navigation!: Navigation;
+	navigation!: INavigation;
 	private _unsubscribeAll: Subject<any> = new Subject<any>();
 
 	/**
@@ -31,7 +31,7 @@ export class CompactLayoutComponent implements OnInit, OnDestroy {
 		private _router: Router,
 		private _navigationService: NavigationService,
 		private _MediaWatcherService: MediaWatcherService,
-		private _ontrialNavigationService: OntrialNavigationService,
+		private _ontrialNavigationService: NavigationEntityService,
 	) {
 	}
 
@@ -57,9 +57,10 @@ export class CompactLayoutComponent implements OnInit, OnDestroy {
 		// Subscribe to navigation data
 		this._navigationService.navigation$
 			.pipe(takeUntil(this._unsubscribeAll))
-			.subscribe((navigation: Navigation) => {
+			.subscribe((navigation: INavigation) => {
 				this.navigation = navigation;
 			});
+		console.log("navigation:", this.navigation);
 
 		// Subscribe to media changes
 		this._MediaWatcherService.onMediaChange$
@@ -90,7 +91,7 @@ export class CompactLayoutComponent implements OnInit, OnDestroy {
 	 */
 	toggleNavigation(name: string): void {
 		// Get the navigation
-		const navigation = this._ontrialNavigationService.getComponent<OntrialVerticalNavigationComponent>(name);
+		const navigation = this._ontrialNavigationService.getComponent<VerticalNavigationComponent>(name);
 
 		if (navigation) {
 			// Toggle the opened status
