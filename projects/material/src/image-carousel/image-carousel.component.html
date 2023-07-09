@@ -1,0 +1,38 @@
+<div #carouselDiv class="relative flex items-center justify-center h-64 sm:h-96 lg:h-128" (mouseover)="pauseRotation()"
+	(mouseout)="resumeRotation()" (swipeleft)="onNext()" (swiperight)="onPrevious()">
+	<img [src]="images[currentImageIndex].src" class="w-full h-full object-cover" [@fadeInOut]>
+	<div *ngIf="enableCaptions === true" class="absolute bottom-0 p-4 text-white">
+		{{ images[currentImageIndex].caption }}
+	</div>
+	<div class="absolute bottom-4 left-0 right-0 flex justify-center space-x-2">
+		<button *ngFor="let image of images; index as i" (click)="goToImage(i)" class="h-2 w-2 rounded-full bg-white"
+			[class.opacity-50]="i !== currentImageIndex"></button>
+	</div>
+	<button (click)="onPrevious()" class="absolute left-0 p-4" aria-label="Previous image">
+		<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+			class="h-6 w-6 text-white">
+			<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+		</svg>
+	</button>
+	<button (click)="onNext()" class="absolute right-0 p-4" aria-label="Next image">
+		<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+			class="h-6 w-6 text-white">
+			<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+		</svg>
+	</button>
+	<div *ngIf="enableFullscreen === true">
+		<button (click)="requestFullscreen(carouselDiv)" class="absolute top-0 right-0 p-4">
+			<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+				class="h-6 w-6 text-white">
+				<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+					d="M3 7v10a2 2 0 002 2h4M21 7v10a2 2 0 01-2 2h-4m6 0a2 2 0 002-2V7a2 2 0 00-2-2h-4a2 2 0 00-2 2v10a2 2 0 002 2h4a2 2 0 012-2V7a2 2 0 00-2-2h-4a2 2 0 00-2 2v10a2 2 0 002 2h4">
+				</path>
+			</svg>
+		</button>
+	</div>
+	<div *ngIf="enableAutoRotate === true">
+		<div class="absolute bottom-0 left-0 w-full h-1 bg-gray-300">
+			<div [style.width.%]="progress" class="h-full bg-green-500"></div>
+		</div>
+	</div>
+</div>

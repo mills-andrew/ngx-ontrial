@@ -1,0 +1,24 @@
+import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { ModalService } from './modal.service';
+
+@Component({
+	selector: 'app-modal',
+	templateUrl: './modal.component.html',
+	styleUrls: ['./modal.component.scss'],
+	standalone: true,
+	imports: [CommonModule]
+})
+export class ModalComponent<T> {
+	display = true;
+
+	constructor(private modalService: ModalService<T>) { }
+
+	async close(): Promise<void> {
+		this.display = false;
+
+		setTimeout(async () => {
+			await this.modalService.close();
+		}, 300);
+	}
+}

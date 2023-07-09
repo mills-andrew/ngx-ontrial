@@ -1,0 +1,57 @@
+/* To learn more about this file see: https://angular.io/config/tsconfig. */
+{
+	"compileOnSave": false,
+	"compilerOptions": {
+		"allowSyntheticDefaultImports": true,
+		"baseUrl": "./",
+		"paths": {
+			"@ngx-ontrial/sandbox": [
+				"dist/sandbox"
+			],
+			"@ngx-ontrial/auth": [
+				"dist/auth"
+			],
+			"@ngx-ontrial/common": [
+				"dist/common"
+			],
+			"@ngx-ontrial/core": [
+				"dist/core"
+			],
+			"@ngx-ontrial/layout": [
+				"dist/layout"
+			],
+			"@ngx-ontrial/material": [
+				"dist/material"
+			],
+			"layout": [
+				"dist/layout"
+			]
+		},
+		"outDir": "./dist/out-tsc",
+		"forceConsistentCasingInFileNames": true,
+		"strict": true,
+		"noImplicitOverride": true,
+		"noPropertyAccessFromIndexSignature": true,
+		"noImplicitReturns": true,
+		"noFallthroughCasesInSwitch": true,
+		"sourceMap": true,
+		"declaration": false,
+		"downlevelIteration": true,
+		"experimentalDecorators": true,
+		"moduleResolution": "node",
+		"importHelpers": true,
+		"target": "ES2022",
+		"module": "ES2022",
+		"useDefineForClassFields": false,
+		"lib": [
+			"ES2022",
+			"dom"
+		]
+	},
+	"angularCompilerOptions": {
+		"enableI18nLegacyMessageIdFormat": false,
+		"strictInjectionParameters": true,
+		"strictInputAccessModifiers": true,
+		"strictTemplates": true
+	}
+}

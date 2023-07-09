@@ -1,0 +1,50 @@
+{
+	"folders": [
+		{
+			"name": "workspace",
+			"path": "."
+		},
+		{
+			"name": "sandbox",
+			"path": "./projects/sandbox"
+		},
+		{
+			"name": "@ngx-ontrial/auth",
+			"path": "./projects/auth"
+		},
+		{
+			"name": "@ngx-ontrial/common",
+			"path": "./projects/common"
+		},
+		{
+			"name": "@ngx-ontrial/core",
+			"path": "./projects/core"
+		},
+		{
+			"name": "@ngx-ontrial/layout",
+			"path": "./projects/layout"
+		},
+		{
+			"name": "@ngx-ontrial/material",
+			"path": "./projects/material"
+		},
+	],
+	"settings": {
+		"editor.tabCompletion": "on",
+		"editor.detectIndentation": false,
+		"editor.insertSpaces": false,
+		"editor.tabSize": 4,
+		"editor.formatOnSave": true,
+		"angular.enable-strict-mode-prompt": false,
+		"js/ts.implicitProjectConfig.experimentalDecorators": true,
+		"files.exclude": {
+			"projects": true,
+			"**/.git": true,
+			"**/.svn": true,
+			"**/.hg": true,
+			"**/CVS": true,
+			"**/.DS_Store": true,
+			"**/Thumbs.db": true
+		}
+	}
+}

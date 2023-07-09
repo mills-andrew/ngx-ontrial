@@ -1,0 +1,33 @@
+.carousel {
+	width: 100%;
+	position: relative;
+}
+
+.carousel-inner {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 500px;
+}
+
+.carousel-image {
+	width: 100%;
+	object-fit: cover;
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	background: rgba(255, 255, 255, 0.5);
+	padding: 10px;
+}
+
+.carousel-control-prev {
+	left: 10px;
+}
+
+.carousel-control-next {
+	right: 10px;
+}
