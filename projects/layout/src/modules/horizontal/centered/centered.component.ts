@@ -1,16 +1,22 @@
-import { Component, Inject, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { NgIf } from '@angular/common';
+import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { ActivatedRoute, Router, RouterOutlet } from '@angular/router';
+import { LoadingBarComponent } from '@ngx-ontrial/material';
 import { MediaWatcherService } from '@ngx-ontrial/core';
-import { INavigation } from '../../../common/';
+import { INavigation, NavigationService } from '../../../common/';
 import { NavigationEntityService } from '../../../common/navigation-entity.service';
 import { VerticalNavigationComponent } from '../../../components/vertical/vertical.component';
+import { HorizontalNavigationComponent } from '../../../components/horizontal/horizontal.component';
 import { Subject, takeUntil } from 'rxjs';
 
 @Component({
 	selector: 'centered-layout',
 	templateUrl: './centered.component.html',
 	encapsulation: ViewEncapsulation.None,
-	// imports: [LoadingBarComponent, NgIf, VerticalNavigationComponent, HorizontalNavigationComponent, MatButtonModule, MatIconModule, RouterOutlet],
+	standalone: true,
+	imports: [LoadingBarComponent, NgIf, VerticalNavigationComponent, HorizontalNavigationComponent, MatButtonModule, MatIconModule, RouterOutlet],
 })
 export class CenteredLayoutComponent implements OnInit, OnDestroy {
 	navigation!: INavigation;
@@ -21,9 +27,9 @@ export class CenteredLayoutComponent implements OnInit, OnDestroy {
 	 * Constructor
 	 */
 	constructor(
-		@Inject(ActivatedRoute) private _activatedRoute: ActivatedRoute,
-		@Inject(Router) private _router: Router,
-		private _navigationService: NavigationEntityService,
+		private _activatedRoute: ActivatedRoute,
+		private _router: Router,
+		private _navigationService: NavigationService,
 		private _MediaWatcherService: MediaWatcherService,
 		private _ontrialNavigationService: NavigationEntityService,
 	) {
@@ -49,11 +55,11 @@ export class CenteredLayoutComponent implements OnInit, OnDestroy {
 	 */
 	ngOnInit(): void {
 		// Subscribe to navigation data
-		// this._navigationService.navigation$
-		// 	.pipe(takeUntil(this._unsubscribeAll))
-		// 	.subscribe((navigation: Navigation<NavigationItem>) => {
-		// 		this.navigation = navigation;
-		// 	});
+		this._navigationService.navigation$
+			.pipe(takeUntil(this._unsubscribeAll))
+			.subscribe((navigation: INavigation) => {
+				this.navigation = navigation;
+			});
 
 		// Subscribe to media changes
 		this._MediaWatcherService.onMediaChange$

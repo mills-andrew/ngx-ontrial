@@ -1,15 +1,15 @@
 import { Injectable } from '@angular/core';
 import { compactNavigation, defaultNavigation, futuristicNavigation, horizontalNavigation } from './data';
 import { cloneDeep } from 'lodash-es';
-import { NavigationEntity } from '@ngx-ontrial/layout';
+import { INavigationEntity } from '@ngx-ontrial/layout';
 import { MockApiService } from '@ngx-ontrial/auth';
 
 @Injectable({ providedIn: 'root' })
 export class NavigationMockApi {
-	private readonly _compactNavigation: NavigationEntity[] = compactNavigation;
-	private readonly _defaultNavigation: NavigationEntity[] = defaultNavigation;
-	private readonly _futuristicNavigation: NavigationEntity[] = futuristicNavigation;
-	private readonly _horizontalNavigation: NavigationEntity[] = horizontalNavigation;
+	private readonly _compactNavigation: INavigationEntity[] = compactNavigation;
+	private readonly _defaultNavigation: INavigationEntity[] = defaultNavigation;
+	private readonly _futuristicNavigation: INavigationEntity[] = futuristicNavigation;
+	private readonly _horizontalNavigation: INavigationEntity[] = horizontalNavigation;
 
 	/**
 	 * Constructor

@@ -51,9 +51,8 @@ export const AppConfig: ApplicationConfig = {
 			services: mockApiServices,
 		}),
 		provideOntrial({
-
-			layout: 'compact',
-			scheme: 'auto',
+			layout: 'enterprise',
+			scheme: 'light',
 			screens: {
 				sm: '600px',
 				md: '960px',

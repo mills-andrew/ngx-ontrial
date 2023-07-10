@@ -1,15 +1,22 @@
 import { BooleanInput } from '@angular/cdk/coercion';
+import { NgClass, NgFor, NgIf, NgTemplateOutlet } from '@angular/common';
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, forwardRef, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { MatMenu } from '@angular/material/menu';
+import { MatIconModule } from '@angular/material/icon';
+import { MatMenu, MatMenuModule } from '@angular/material/menu';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { HorizontalNavigationBasicItemComponent } from '../../../horizontal/components/basic/basic.component';
+import { HorizontalNavigationDividerItemComponent } from '../../../horizontal/components/divider/divider.component';
 import { HorizontalNavigationComponent } from '../../../horizontal/horizontal.component';
 import { NavigationEntityService } from '../../../../common/navigation-entity.service';
 import { Subject, takeUntil } from 'rxjs';
-import { NavigationEntity } from '../../../../common';
+import { INavigationEntity } from '../../../../common';
 
 @Component({
 	selector: 'ontrial-horizontal-navigation-branch-item',
 	templateUrl: './branch.component.html',
-	changeDetection: ChangeDetectionStrategy.OnPush
+	changeDetection: ChangeDetectionStrategy.OnPush,
+	standalone: true,
+	imports: [NgIf, NgClass, MatMenuModule, NgTemplateOutlet, NgFor, HorizontalNavigationBasicItemComponent, forwardRef(() => HorizontalNavigationBranchItemComponent), HorizontalNavigationDividerItemComponent, MatTooltipModule, MatIconModule],
 })
 export class HorizontalNavigationBranchItemComponent implements OnInit, OnDestroy {
 	/* eslint-disable @typescript-eslint/naming-convention */
@@ -17,7 +24,7 @@ export class HorizontalNavigationBranchItemComponent implements OnInit, OnDestro
 	/* eslint-enable @typescript-eslint/naming-convention */
 
 	@Input() child: boolean = false;
-	@Input() item!: NavigationEntity;
+	@Input() item!: INavigationEntity;
 	@Input() name!: string;
 	@ViewChild('matMenu', { static: true }) matMenu!: MatMenu;
 

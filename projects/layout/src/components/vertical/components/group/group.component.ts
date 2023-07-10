@@ -1,14 +1,22 @@
 import { BooleanInput } from '@angular/cdk/coercion';
+import { NgClass, NgFor, NgIf } from '@angular/common';
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, forwardRef, Input, OnDestroy, OnInit } from '@angular/core';
+import { MatIconModule } from '@angular/material/icon';
 import { Subject, takeUntil } from 'rxjs';
+import { VerticalNavigationBasicItemComponent } from '../basic/basic.component';
+import { VerticalNavigationCollapsableItemComponent } from '../collapsable/collapsable.component';
+import { VerticalNavigationDividerItemComponent } from '../divider/divider.component';
+import { VerticalNavigationSpacerItemComponent } from '../spacer/spacer.component';
 import { VerticalNavigationComponent } from '../../vertical.component';
 import { NavigationEntityService } from '../../../../common/navigation-entity.service';
-import { NavigationEntity } from '../../../../common';
+import { INavigationEntity } from '../../../../common';
 
 @Component({
 	selector: 'ontrial-vertical-navigation-group-item',
 	templateUrl: './group.component.html',
-	changeDetection: ChangeDetectionStrategy.OnPush
+	changeDetection: ChangeDetectionStrategy.OnPush,
+	standalone: true,
+	imports: [NgClass, NgIf, MatIconModule, NgFor, VerticalNavigationBasicItemComponent, VerticalNavigationCollapsableItemComponent, VerticalNavigationDividerItemComponent, forwardRef(() => VerticalNavigationGroupItemComponent), VerticalNavigationSpacerItemComponent],
 })
 export class VerticalNavigationGroupItemComponent implements OnInit, OnDestroy {
 	/* eslint-disable @typescript-eslint/naming-convention */
@@ -16,7 +24,7 @@ export class VerticalNavigationGroupItemComponent implements OnInit, OnDestroy {
 	/* eslint-enable @typescript-eslint/naming-convention */
 
 	@Input() autoCollapse!: boolean;
-	@Input() item!: NavigationEntity;
+	@Input() item!: INavigationEntity;
 	@Input() name!: string;
 
 	private _ontrialVerticalNavigationComponent!: VerticalNavigationComponent;

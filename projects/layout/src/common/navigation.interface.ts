@@ -1,8 +1,8 @@
-import { NavigationEntity } from "./navigation.types";
+import { INavigationEntity } from "./navigation.types";
 
 export interface INavigation {
-	compact: NavigationEntity[];
-	default: NavigationEntity[];
-	futuristic: NavigationEntity[];
-	horizontal: NavigationEntity[];
+	compact: INavigationEntity[];
+	default: INavigationEntity[];
+	futuristic: INavigationEntity[];
+	horizontal: INavigationEntity[];
 }

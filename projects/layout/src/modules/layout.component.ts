@@ -1,14 +1,27 @@
-import { DOCUMENT } from '@angular/common';
-import { Component, Inject, Renderer2, ViewEncapsulation } from '@angular/core';
+import { DOCUMENT, NgIf } from '@angular/common';
+import { Component, Inject, OnDestroy, OnInit, Renderer2, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { ONTRIAL_VERSION, OntrialConfig, ConfigService, MediaWatcherService, PlatformService } from '@ngx-ontrial/core';
 import { combineLatest, filter, map, Subject, takeUntil } from 'rxjs';
+import { EmptyLayoutComponent } from './empty/empty.component';
+import { CenteredLayoutComponent } from './horizontal/centered/centered.component';
+import { EnterpriseLayoutComponent } from './horizontal/enterprise/enterprise.component';
+import { MaterialLayoutComponent } from './horizontal/material/material.component';
+import { ModernLayoutComponent } from './horizontal/modern/modern.component';
+import { ClassicLayoutComponent } from './vertical/classic/classic.component';
+import { ClassyLayoutComponent } from './vertical/classy/classy.component';
+import { CompactLayoutComponent } from './vertical/compact/compact.component';
+import { DenseLayoutComponent } from './vertical/dense/dense.component';
+import { FuturisticLayoutComponent } from './vertical/futuristic/futuristic.component';
+import { ThinLayoutComponent } from './vertical/thin/thin.component';
 
 @Component({
 	selector: 'layout',
 	templateUrl: './layout.component.html',
 	styleUrls: ['./layout.component.scss'],
-	encapsulation: ViewEncapsulation.None
+	encapsulation: ViewEncapsulation.None,
+	standalone: true,
+	imports: [NgIf, EmptyLayoutComponent, CenteredLayoutComponent, EnterpriseLayoutComponent, MaterialLayoutComponent, ModernLayoutComponent, ClassicLayoutComponent, ClassyLayoutComponent, CompactLayoutComponent, DenseLayoutComponent, FuturisticLayoutComponent, ThinLayoutComponent],
 })
 export class LayoutComponent {
 	config!: OntrialConfig;
@@ -21,10 +34,10 @@ export class LayoutComponent {
 	 * Constructor
 	 */
 	constructor(
-		@Inject(ActivatedRoute) private _activatedRoute: ActivatedRoute,
+		private _activatedRoute: ActivatedRoute,
 		@Inject(DOCUMENT) private _document: any,
-		@Inject(Router) private _router: Router,
 		private _renderer2: Renderer2,
+		private _router: Router,
 		private _configService: ConfigService,
 		private _mediaWatcherService: MediaWatcherService,
 		private _platformService: PlatformService,

@@ -173,12 +173,12 @@ export class MockApiService {
 	 */
 	private _registerHandler(method: MockApiMethods, url: string, delay?: number): MockApiHandler {
 		// Create a new instance of OntrialMockApiRequestHandler
-		const fuseMockHttp = new MockApiHandler(url, delay);
+		const ontrialMockHttp = new MockApiHandler(url, delay);
 
 		// Store the handler to access it from the interceptor
-		this._handlers[method].set(url, fuseMockHttp);
+		this._handlers[method].set(url, ontrialMockHttp);
 
 		// Return the instance
-		return fuseMockHttp;
+		return ontrialMockHttp;
 	}
 }

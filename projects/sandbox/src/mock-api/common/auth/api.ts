@@ -14,7 +14,7 @@ export class AuthMockApi {
 	/**
 	 * Constructor
 	 */
-	constructor(private _fuseMockApiService: MockApiService) {
+	constructor(private _ontrialMockApiService: MockApiService) {
 		// Set the mock-api
 		this._secret = 'YOUR_VERY_CONFIDENTIAL_SECRET_FOR_SIGNING_JWT_TOKENS!!!';
 
@@ -33,7 +33,7 @@ export class AuthMockApi {
 		// -----------------------------------------------------------------------------------------------------
 		// @ Forgot password - POST
 		// -----------------------------------------------------------------------------------------------------
-		this._fuseMockApiService
+		this._ontrialMockApiService
 			.onPost('api/auth/forgot-password', 1000)
 			.reply(() =>
 				[
@@ -45,7 +45,7 @@ export class AuthMockApi {
 		// -----------------------------------------------------------------------------------------------------
 		// @ Reset password - POST
 		// -----------------------------------------------------------------------------------------------------
-		this._fuseMockApiService
+		this._ontrialMockApiService
 			.onPost('api/auth/reset-password', 1000)
 			.reply(() =>
 				[
@@ -57,7 +57,7 @@ export class AuthMockApi {
 		// -----------------------------------------------------------------------------------------------------
 		// @ Sign in - POST
 		// -----------------------------------------------------------------------------------------------------
-		this._fuseMockApiService
+		this._ontrialMockApiService
 			.onPost('api/auth/sign-in', 1500)
 			.reply(({ request }) => {
 				// Sign in successful
@@ -82,7 +82,7 @@ export class AuthMockApi {
 		// -----------------------------------------------------------------------------------------------------
 		// @ Sign in using the access token - POST
 		// -----------------------------------------------------------------------------------------------------
-		this._fuseMockApiService
+		this._ontrialMockApiService
 			.onPost('api/auth/sign-in-with-token')
 			.reply(({ request }) => {
 				// Get the access token
@@ -112,7 +112,7 @@ export class AuthMockApi {
 		// -----------------------------------------------------------------------------------------------------
 		// @ Sign up - POST
 		// -----------------------------------------------------------------------------------------------------
-		this._fuseMockApiService
+		this._ontrialMockApiService
 			.onPost('api/auth/sign-up', 1500)
 			.reply(() =>
 
@@ -126,7 +126,7 @@ export class AuthMockApi {
 		// -----------------------------------------------------------------------------------------------------
 		// @ Unlock session - POST
 		// -----------------------------------------------------------------------------------------------------
-		this._fuseMockApiService
+		this._ontrialMockApiService
 			.onPost('api/auth/unlock-session', 1500)
 			.reply(({ request }) => {
 				// Sign in successful

@@ -1,15 +1,25 @@
 import { BooleanInput } from '@angular/cdk/coercion';
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Inject, Input, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
+import { NgClass, NgFor, NgIf } from '@angular/common';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
+import { MatIconModule } from '@angular/material/icon';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { NavigationEnd, Router } from '@angular/router';
 import { NavigationEntityService } from '../../../../common/navigation-entity.service';
+import { VerticalNavigationBasicItemComponent } from '../../../vertical/components/basic/basic.component';
+import { VerticalNavigationCollapsableItemComponent } from '../../../vertical/components/collapsable/collapsable.component';
+import { VerticalNavigationDividerItemComponent } from '../../../vertical/components/divider/divider.component';
+import { VerticalNavigationGroupItemComponent } from '../../../vertical/components/group/group.component';
+import { VerticalNavigationSpacerItemComponent } from '../../../vertical/components/spacer/spacer.component';
 import { VerticalNavigationComponent } from '../../../vertical/vertical.component';
 import { filter, Subject, takeUntil } from 'rxjs';
-import { NavigationEntity } from '../../../../common';
+import { INavigationEntity } from '../../../../common';
 
 @Component({
 	selector: 'ontrial-vertical-navigation-aside-item',
 	templateUrl: './aside.component.html',
-	changeDetection: ChangeDetectionStrategy.OnPush
+	changeDetection: ChangeDetectionStrategy.OnPush,
+	standalone: true,
+	imports: [NgClass, MatTooltipModule, NgIf, MatIconModule, NgFor, VerticalNavigationBasicItemComponent, VerticalNavigationCollapsableItemComponent, VerticalNavigationDividerItemComponent, VerticalNavigationGroupItemComponent, VerticalNavigationSpacerItemComponent],
 })
 export class VerticalNavigationAsideItemComponent implements OnChanges, OnInit, OnDestroy {
 	/* eslint-disable @typescript-eslint/naming-convention */
@@ -19,7 +29,7 @@ export class VerticalNavigationAsideItemComponent implements OnChanges, OnInit, 
 
 	@Input() activeItemId: string | null = null;;
 	@Input() autoCollapse: boolean = false;
-	@Input() item!: NavigationEntity;
+	@Input() item!: INavigationEntity;
 	@Input() name!: string;
 	@Input() skipChildren!: boolean;
 
@@ -32,7 +42,7 @@ export class VerticalNavigationAsideItemComponent implements OnChanges, OnInit, 
 	 */
 	constructor(
 		private _changeDetectorRef: ChangeDetectorRef,
-		@Inject(Router) private _router: Router,
+		private _router: Router,
 		private _ontrialNavigationService: NavigationEntityService,
 	) {
 	}
@@ -119,7 +129,7 @@ export class VerticalNavigationAsideItemComponent implements OnChanges, OnInit, 
 	 * @param currentUrl
 	 * @private
 	 */
-	private _hasActiveChild(item: NavigationEntity, currentUrl: string): boolean {
+	private _hasActiveChild(item: INavigationEntity, currentUrl: string): boolean {
 		const children = item.children;
 
 		if (!children) {

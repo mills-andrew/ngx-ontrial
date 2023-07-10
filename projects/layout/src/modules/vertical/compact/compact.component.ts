@@ -1,16 +1,22 @@
-import { Component, Inject, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
+import { NgIf } from '@angular/common';
+import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 import { ActivatedRoute, Router, RouterOutlet } from '@angular/router';
+import { LoadingBarComponent } from '@ngx-ontrial/material';
 import { INavigation } from '../../../common/';
 import { VerticalNavigationComponent } from '../../../components/vertical/vertical.component';
 import { NavigationEntityService } from '../../../common/navigation-entity.service';
 import { MediaWatcherService } from '@ngx-ontrial/core';
 import { Subject, takeUntil } from 'rxjs';
-import { NavigationService } from '../../../common/navigation.service';
+import { NavigationService } from '../../../common/navigation-data.service';
 
 @Component({
 	selector: 'compact-layout',
 	templateUrl: './compact.component.html',
-	encapsulation: ViewEncapsulation.None
+	encapsulation: ViewEncapsulation.None,
+	standalone: true,
+	imports: [LoadingBarComponent, MatButtonModule, MatIconModule, NgIf, RouterOutlet, VerticalNavigationComponent],
 })
 export class CompactLayoutComponent implements OnInit, OnDestroy {
 	isScreenSmall!: boolean;
@@ -21,8 +27,8 @@ export class CompactLayoutComponent implements OnInit, OnDestroy {
 	 * Constructor
 	 */
 	constructor(
-		@Inject(ActivatedRoute) private _activatedRoute: ActivatedRoute,
-		@Inject(Router) private _router: Router,
+		private _activatedRoute: ActivatedRoute,
+		private _router: Router,
 		private _navigationService: NavigationService,
 		private _MediaWatcherService: MediaWatcherService,
 		private _ontrialNavigationService: NavigationEntityService,
@@ -54,7 +60,6 @@ export class CompactLayoutComponent implements OnInit, OnDestroy {
 			.subscribe((navigation: INavigation) => {
 				this.navigation = navigation;
 			});
-		console.log("navigation:", this.navigation);
 
 		// Subscribe to media changes
 		this._MediaWatcherService.onMediaChange$

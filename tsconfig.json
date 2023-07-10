@@ -22,9 +22,6 @@
 			],
 			"@ngx-ontrial/material": [
 				"dist/material"
-			],
-			"layout": [
-				"dist/layout"
 			]
 		},
 		"outDir": "./dist/out-tsc",

@@ -6,13 +6,13 @@ import { delay, Observable, of, switchMap, throwError } from 'rxjs';
 
 export const mockApiInterceptor = (request: HttpRequest<unknown>, next: HttpHandlerFn): Observable<HttpEvent<unknown>> => {
 	const defaultDelay = inject(ONTRIAL_MOCK_API_DEFAULT_DELAY);
-	const fuseMockApiService = inject(MockApiService);
+	const ontrialMockApiService = inject(MockApiService);
 
 	// Try to get the request handler
 	const {
 		handler,
 		urlParams,
-	} = fuseMockApiService.findHandler(request.method.toUpperCase(), request.url);
+	} = ontrialMockApiService.findHandler(request.method.toUpperCase(), request.url);
 
 	// Pass through if the request handler does not exist
 	if (!handler) {

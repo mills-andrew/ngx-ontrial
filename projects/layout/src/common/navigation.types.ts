@@ -1,6 +1,6 @@
 import { IsActiveMatchOptions, Params, QueryParamsHandling } from '@angular/router';
 
-export interface NavigationEntity {
+export interface INavigationEntity {
 	id?: string;
 	title?: string;
 	subtitle?: string;
@@ -11,7 +11,7 @@ export interface NavigationEntity {
 	| 'divider'
 	| 'group'
 	| 'spacer';
-	hidden?: (item: NavigationEntity) => boolean;
+	hidden?: (item: INavigationEntity) => boolean;
 	active?: boolean;
 	disabled?: boolean;
 	tooltip?: string;
@@ -29,7 +29,7 @@ export interface NavigationEntity {
 	| string;
 	exactMatch?: boolean;
 	isActiveMatchOptions?: IsActiveMatchOptions;
-	function?: (item: NavigationEntity) => void;
+	function?: (item: INavigationEntity) => void;
 	classes?: {
 		title?: string;
 		subtitle?: string;
@@ -41,7 +41,7 @@ export interface NavigationEntity {
 		title?: string;
 		classes?: string;
 	};
-	children?: NavigationEntity[];
+	children?: INavigationEntity[];
 	meta?: any;
 }
 

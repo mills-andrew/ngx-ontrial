@@ -1,16 +1,19 @@
+import { NgClass } from '@angular/common';
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { NavigationEntityService } from '../../../../common/navigation-entity.service';
-import { NavigationEntity } from '../../../../common';
+import { INavigationEntity } from '../../../../common';
 import { VerticalNavigationComponent } from '../../../vertical/vertical.component';
 import { Subject, takeUntil } from 'rxjs';
 
 @Component({
 	selector: 'ontrial-vertical-navigation-spacer-item',
 	templateUrl: './spacer.component.html',
-	changeDetection: ChangeDetectionStrategy.OnPush
+	changeDetection: ChangeDetectionStrategy.OnPush,
+	standalone: true,
+	imports: [NgClass],
 })
 export class VerticalNavigationSpacerItemComponent implements OnInit, OnDestroy {
-	@Input() item!: NavigationEntity;
+	@Input() item!: INavigationEntity;
 	@Input() name!: string;
 
 	private _ontrialVerticalNavigationComponent!: VerticalNavigationComponent;

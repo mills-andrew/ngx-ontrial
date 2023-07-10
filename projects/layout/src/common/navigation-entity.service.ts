@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
-import { NavigationEntity } from '.';
+import { INavigationEntity } from '.';
 
 @Injectable({ providedIn: 'root' })
 export class NavigationEntityService {
 	private _componentRegistry: Map<string, any> = new Map<string, any>();
-	private _navigationStore: Map<string, NavigationEntity[]> = new Map<string, any>();
+	private _navigationStore: Map<string, INavigationEntity[]> = new Map<string, any>();
 
 	/**
 	 * Constructor
@@ -50,7 +50,7 @@ export class NavigationEntityService {
 	 * @param key
 	 * @param navigation
 	 */
-	storeNavigation(key: string, navigation: NavigationEntity[]): void {
+	storeNavigation(key: string, navigation: INavigationEntity[]): void {
 		// Add to the store
 		this._navigationStore.set(key, navigation);
 	}
@@ -60,7 +60,7 @@ export class NavigationEntityService {
 	 *
 	 * @param key
 	 */
-	getNavigation(key: string): NavigationEntity[] {
+	getNavigation(key: string): INavigationEntity[] {
 		return this._navigationStore.get(key) ?? [];
 	}
 
@@ -86,7 +86,7 @@ export class NavigationEntityService {
 	 * @param navigation
 	 * @param flatNavigation
 	 */
-	getFlatNavigation(navigation: NavigationEntity[], flatNavigation: NavigationEntity[] = []): NavigationEntity[] {
+	getFlatNavigation(navigation: INavigationEntity[], flatNavigation: INavigationEntity[] = []): INavigationEntity[] {
 		for (const item of navigation) {
 			if (item.type === 'basic') {
 				flatNavigation.push(item);
@@ -110,7 +110,7 @@ export class NavigationEntityService {
 	 * @param id
 	 * @param navigation
 	 */
-	getItem(id: string, navigation: NavigationEntity[]): NavigationEntity | null {
+	getItem(id: string, navigation: INavigationEntity[]): INavigationEntity | null {
 		if (navigation === null)
 			return null;
 
@@ -141,9 +141,9 @@ export class NavigationEntityService {
 	 */
 	getItemParent(
 		id: string,
-		navigation: NavigationEntity[],
-		parent: NavigationEntity[] | NavigationEntity,
-	): NavigationEntity[] | NavigationEntity | null {
+		navigation: INavigationEntity[],
+		parent: INavigationEntity[] | INavigationEntity,
+	): INavigationEntity[] | INavigationEntity | null {
 		for (const item of navigation) {
 			if (item.id === id) {
 				return parent;

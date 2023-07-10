@@ -194,61 +194,61 @@ const config = {
 			typography: ({ theme }) => ({
 				DEFAULT: {
 					css: {
-						color: 'var(--fuse-text-default)',
+						color: 'var(--ontrial-text-default)',
 						'[class~="lead"]': {
-							color: 'var(--fuse-text-secondary)'
+							color: 'var(--ontrial-text-secondary)'
 						},
 						a: {
-							color: 'var(--fuse-primary-500)'
+							color: 'var(--ontrial-primary-500)'
 						},
 						strong: {
-							color: 'var(--fuse-text-default)'
+							color: 'var(--ontrial-text-default)'
 						},
 						'ol > li::before': {
-							color: 'var(--fuse-text-secondary)'
+							color: 'var(--ontrial-text-secondary)'
 						},
 						'ul > li::before': {
-							backgroundColor: 'var(--fuse-text-hint)'
+							backgroundColor: 'var(--ontrial-text-hint)'
 						},
 						hr: {
-							borderColor: 'var(--fuse-border)'
+							borderColor: 'var(--ontrial-border)'
 						},
 						blockquote: {
-							color: 'var(--fuse-text-default)',
-							borderLeftColor: 'var(--fuse-border)'
+							color: 'var(--ontrial-text-default)',
+							borderLeftColor: 'var(--ontrial-border)'
 						},
 						h1: {
-							color: 'var(--fuse-text-default)'
+							color: 'var(--ontrial-text-default)'
 						},
 						h2: {
-							color: 'var(--fuse-text-default)'
+							color: 'var(--ontrial-text-default)'
 						},
 						h3: {
-							color: 'var(--fuse-text-default)'
+							color: 'var(--ontrial-text-default)'
 						},
 						h4: {
-							color: 'var(--fuse-text-default)'
+							color: 'var(--ontrial-text-default)'
 						},
 						'figure figcaption': {
-							color: 'var(--fuse-text-secondary)'
+							color: 'var(--ontrial-text-secondary)'
 						},
 						code: {
-							color: 'var(--fuse-text-default)',
+							color: 'var(--ontrial-text-default)',
 							fontWeight: '500'
 						},
 						'a code': {
-							color: 'var(--fuse-primary)'
+							color: 'var(--ontrial-primary)'
 						},
 						pre: {
 							color: theme('colors.white'),
 							backgroundColor: theme('colors.gray.800')
 						},
 						thead: {
-							color: 'var(--fuse-text-default)',
-							borderBottomColor: 'var(--fuse-border)'
+							color: 'var(--ontrial-text-default)',
+							borderBottomColor: 'var(--ontrial-border)'
 						},
 						'tbody tr': {
-							borderBottomColor: 'var(--fuse-border)'
+							borderBottomColor: 'var(--ontrial-border)'
 						},
 						'ol[type="A" s]': false,
 						'ol[type="a" s]': false,

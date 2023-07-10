@@ -1,18 +1,26 @@
 import { BooleanInput } from '@angular/cdk/coercion';
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, forwardRef, HostBinding, Inject, Input, OnDestroy, OnInit } from '@angular/core';
-
+import { NgClass, NgFor, NgIf } from '@angular/common';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, forwardRef, HostBinding, Input, OnDestroy, OnInit } from '@angular/core';
+import { MatIconModule } from '@angular/material/icon';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { NavigationEnd, Router } from '@angular/router';
 import { ontrialAnimations } from '@ngx-ontrial/common';
 import { filter, Subject, takeUntil } from 'rxjs';
 import { VerticalNavigationComponent } from '../../vertical.component';
+import { VerticalNavigationBasicItemComponent } from '../basic/basic.component';
+import { VerticalNavigationDividerItemComponent } from '../divider/divider.component';
+import { VerticalNavigationGroupItemComponent } from '../group/group.component';
+import { VerticalNavigationSpacerItemComponent } from '../spacer/spacer.component';
 import { NavigationEntityService } from '../../../../common/navigation-entity.service';
-import { NavigationEntity } from '../../../../common';
+import { INavigationEntity } from '../../../../common';
 
 @Component({
 	selector: 'ontrial-vertical-navigation-collapsable-item',
 	templateUrl: './collapsable.component.html',
 	animations: ontrialAnimations,
 	changeDetection: ChangeDetectionStrategy.OnPush,
+	standalone: true,
+	imports: [NgClass, MatTooltipModule, NgIf, MatIconModule, NgFor, VerticalNavigationBasicItemComponent, VerticalNavigationDividerItemComponent, VerticalNavigationSpacerItemComponent],
 })
 export class VerticalNavigationCollapsableItemComponent implements OnInit, OnDestroy {
 	/* eslint-disable @typescript-eslint/naming-convention */
@@ -20,7 +28,7 @@ export class VerticalNavigationCollapsableItemComponent implements OnInit, OnDes
 	/* eslint-enable @typescript-eslint/naming-convention */
 
 	@Input() autoCollapse!: boolean;
-	@Input() item!: NavigationEntity;
+	@Input() item!: INavigationEntity;
 	@Input() name!: string;
 
 	isCollapsed: boolean = true;
@@ -33,7 +41,7 @@ export class VerticalNavigationCollapsableItemComponent implements OnInit, OnDes
 	 */
 	constructor(
 		private _changeDetectorRef: ChangeDetectorRef,
-		@Inject(Router) private _router: Router,
+		private _router: Router,
 		private _ontrialNavigationService: NavigationEntityService,
 	) {
 	}
@@ -249,7 +257,7 @@ export class VerticalNavigationCollapsableItemComponent implements OnInit, OnDes
 	 * @param currentUrl
 	 * @private
 	 */
-	private _hasActiveChild(item: NavigationEntity, currentUrl: string): boolean {
+	private _hasActiveChild(item: INavigationEntity, currentUrl: string): boolean {
 		const children = item.children;
 
 		if (!children) {
@@ -280,7 +288,7 @@ export class VerticalNavigationCollapsableItemComponent implements OnInit, OnDes
 	 * @param item
 	 * @private
 	 */
-	private _isChildrenOf(parent: NavigationEntity, item: NavigationEntity): boolean {
+	private _isChildrenOf(parent: INavigationEntity, item: INavigationEntity): boolean {
 		const children = parent.children;
 
 		if (!children) {

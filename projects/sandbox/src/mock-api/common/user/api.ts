@@ -10,7 +10,7 @@ export class UserMockApi {
 	/**
 	 * Constructor
 	 */
-	constructor(private _fuseMockApiService: MockApiService) {
+	constructor(private _ontrialMockApiService: MockApiService) {
 		// Register Mock API handlers
 		this.registerHandlers();
 	}
@@ -26,14 +26,14 @@ export class UserMockApi {
 		// -----------------------------------------------------------------------------------------------------
 		// @ User - GET
 		// -----------------------------------------------------------------------------------------------------
-		this._fuseMockApiService
+		this._ontrialMockApiService
 			.onGet('api/common/user')
 			.reply(() => [200, cloneDeep(this._user)]);
 
 		// -----------------------------------------------------------------------------------------------------
 		// @ User - PATCH
 		// -----------------------------------------------------------------------------------------------------
-		this._fuseMockApiService
+		this._ontrialMockApiService
 			.onPatch('api/common/user')
 			.reply(({ request }) => {
 				// Get the user mock-api

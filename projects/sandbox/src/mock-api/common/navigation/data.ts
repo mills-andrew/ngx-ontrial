@@ -1,8 +1,8 @@
 /* eslint-disable */
 
-import { NavigationEntity } from "@ngx-ontrial/layout";
+import { INavigationEntity } from "@ngx-ontrial/layout";
 
-export const defaultNavigation: NavigationEntity[] = [
+export const defaultNavigation: INavigationEntity[] = [
 	{
 		id: 'dashboards',
 		title: 'Dashboards',
@@ -696,11 +696,11 @@ export const defaultNavigation: NavigationEntity[] = [
 				link: '/ui/material-components',
 			},
 			{
-				id: 'user-interface.fuse-components',
+				id: 'user-interface.ontrial-components',
 				title: 'Ontrial Components',
 				type: 'basic',
 				icon: 'heroicons_outline:square-3-stack-3d',
-				link: '/ui/fuse-components',
+				link: '/ui/ontrial-components',
 			},
 			{
 				id: 'user-interface.other-components',
@@ -993,11 +993,11 @@ export const defaultNavigation: NavigationEntity[] = [
 				link: '/ui/material-components',
 			},
 			{
-				id: 'user-interface.fuse-components',
+				id: 'user-interface.ontrial-components',
 				title: 'Ontrial Components',
 				type: 'basic',
 				icon: 'heroicons_outline:square-3-stack-3d',
-				link: '/ui/fuse-components',
+				link: '/ui/ontrial-components',
 			},
 			{
 				id: 'user-interface.other-components',
@@ -1166,7 +1166,7 @@ export const defaultNavigation: NavigationEntity[] = [
 		],
 	},
 ];
-export const compactNavigation: NavigationEntity[] = [
+export const compactNavigation: INavigationEntity[] = [
 	{
 		id: 'dashboards',
 		title: 'Dashboards',
@@ -1208,7 +1208,7 @@ export const compactNavigation: NavigationEntity[] = [
 		children: [], // This will be filled from defaultNavigation so we don't have to manage multiple sets of the same navigation
 	},
 ];
-export const futuristicNavigation: NavigationEntity[] = [
+export const futuristicNavigation: INavigationEntity[] = [
 	{
 		id: 'dashboards',
 		title: 'DASHBOARDS',
@@ -1248,7 +1248,7 @@ export const futuristicNavigation: NavigationEntity[] = [
 		children: [], // This will be filled from defaultNavigation so we don't have to manage multiple sets of the same navigation
 	},
 ];
-export const horizontalNavigation: NavigationEntity[] = [
+export const horizontalNavigation: INavigationEntity[] = [
 	{
 		id: 'dashboards',
 		title: 'Dashboards',
