@@ -1,9 +1,5 @@
-import { NgIf } from '@angular/common';
-import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
-import { MatButtonModule } from '@angular/material/button';
-import { MatIconModule } from '@angular/material/icon';
+import { Component, Inject, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute, Router, RouterOutlet } from '@angular/router';
-import { LoadingBarComponent } from '@ngx-ontrial/material';
 import { INavigation } from '../../../common/';
 import { VerticalNavigationComponent } from '../../../components/vertical/vertical.component';
 import { NavigationEntityService } from '../../../common/navigation-entity.service';
@@ -13,9 +9,7 @@ import { Subject, takeUntil } from 'rxjs';
 @Component({
 	selector: 'classy-layout',
 	templateUrl: './classy.component.html',
-	encapsulation: ViewEncapsulation.None,
-	standalone: true,
-	imports: [LoadingBarComponent, VerticalNavigationComponent, NgIf, MatIconModule, MatButtonModule, RouterOutlet],
+	encapsulation: ViewEncapsulation.None
 })
 export class ClassyLayoutComponent implements OnInit, OnDestroy {
 	isScreenSmall!: boolean;
@@ -26,8 +20,8 @@ export class ClassyLayoutComponent implements OnInit, OnDestroy {
 	 * Constructor
 	 */
 	constructor(
-		private _activatedRoute: ActivatedRoute,
-		private _router: Router,
+		@Inject(ActivatedRoute) private _activatedRoute: ActivatedRoute,
+		@Inject(Router) private _router: Router,
 		private _navigationService: NavigationEntityService,
 		private _MediaWatcherService: MediaWatcherService,
 		private _ontrialNavigationService: NavigationEntityService,

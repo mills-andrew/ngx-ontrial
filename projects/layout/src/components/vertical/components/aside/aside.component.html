@@ -30,8 +30,8 @@
 		<!-- Badge -->
 		<ng-container *ngIf="item.badge">
 			<div class="ontrial-vertical-navigation-item-badge">
-				<div class="ontrial-vertical-navigation-item-badge-content" [ngClass]="item.badge.classes">
-					{{item.badge.title}}
+				<div class="ontrial-vertical-navigation-item-badge-content" [ngClass]="item.badge?.classes">
+					{{item.badge?.title}}
 				</div>
 			</div>
 		</ng-container>

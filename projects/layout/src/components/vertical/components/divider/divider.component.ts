@@ -1,4 +1,3 @@
-import { NgClass } from '@angular/common';
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { NavigationEntityService } from '../../../../common/navigation-entity.service';
 import { NavigationEntity } from '../../../../common';
@@ -8,9 +7,7 @@ import { Subject, takeUntil } from 'rxjs';
 @Component({
 	selector: 'ontrial-vertical-navigation-divider-item',
 	templateUrl: './divider.component.html',
-	changeDetection: ChangeDetectionStrategy.OnPush,
-	standalone: true,
-	imports: [NgClass],
+	changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class VerticalNavigationDividerItemComponent implements OnInit, OnDestroy {
 	@Input() item!: NavigationEntity;

@@ -1,8 +1,6 @@
-import { NgClass, NgIf, NgTemplateOutlet } from '@angular/common';
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnDestroy, OnInit } from '@angular/core';
-import { MatIconModule } from '@angular/material/icon';
-import { MatTooltipModule } from '@angular/material/tooltip';
-import { IsActiveMatchOptions, RouterLink, RouterLinkActive } from '@angular/router';
+
+import { IsActiveMatchOptions } from '@angular/router';
 import { NavigationEntityService } from '../../../../common/navigation-entity.service';
 import { NavigationEntity } from '../../../../common';
 import { VerticalNavigationComponent } from '../../../vertical/vertical.component';
@@ -13,8 +11,6 @@ import { Subject, takeUntil } from 'rxjs';
 	selector: 'ontrial-vertical-navigation-basic-item',
 	templateUrl: './basic.component.html',
 	changeDetection: ChangeDetectionStrategy.OnPush,
-	standalone: true,
-	imports: [NgClass, NgIf, RouterLink, RouterLinkActive, MatTooltipModule, NgTemplateOutlet, MatIconModule],
 })
 export class VerticalNavigationBasicItemComponent implements OnInit, OnDestroy {
 	@Input() item!: NavigationEntity;

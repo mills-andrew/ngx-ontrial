@@ -1,9 +1,5 @@
-import { NgIf } from '@angular/common';
-import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
-import { MatButtonModule } from '@angular/material/button';
-import { MatIconModule } from '@angular/material/icon';
+import { Component, Inject, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute, Router, RouterOutlet } from '@angular/router';
-import { LoadingBarComponent } from '@ngx-ontrial/material';
 import { INavigation } from '../../../common/';
 import { VerticalNavigationComponent } from '../../../components/vertical/vertical.component';
 import { NavigationEntityService } from '../../../common/navigation-entity.service';
@@ -14,9 +10,7 @@ import { NavigationService } from '../../../common/navigation.service';
 @Component({
 	selector: 'compact-layout',
 	templateUrl: './compact.component.html',
-	encapsulation: ViewEncapsulation.None,
-	standalone: true,
-	imports: [LoadingBarComponent, MatButtonModule, MatIconModule, NgIf, RouterOutlet, VerticalNavigationComponent],
+	encapsulation: ViewEncapsulation.None
 })
 export class CompactLayoutComponent implements OnInit, OnDestroy {
 	isScreenSmall!: boolean;
@@ -27,8 +21,8 @@ export class CompactLayoutComponent implements OnInit, OnDestroy {
 	 * Constructor
 	 */
 	constructor(
-		private _activatedRoute: ActivatedRoute,
-		private _router: Router,
+		@Inject(ActivatedRoute) private _activatedRoute: ActivatedRoute,
+		@Inject(Router) private _router: Router,
 		private _navigationService: NavigationService,
 		private _MediaWatcherService: MediaWatcherService,
 		private _ontrialNavigationService: NavigationEntityService,

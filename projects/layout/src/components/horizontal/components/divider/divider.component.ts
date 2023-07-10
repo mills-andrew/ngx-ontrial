@@ -1,4 +1,3 @@
-import { NgClass } from '@angular/common';
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { HorizontalNavigationComponent } from '../../../horizontal/horizontal.component';
 import { NavigationEntityService } from '../../../../common/navigation-entity.service';
@@ -8,9 +7,7 @@ import { NavigationEntity } from '../../../../common';
 @Component({
 	selector: 'ontrial-horizontal-navigation-divider-item',
 	templateUrl: './divider.component.html',
-	changeDetection: ChangeDetectionStrategy.OnPush,
-	standalone: true,
-	imports: [NgClass],
+	changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HorizontalNavigationDividerItemComponent implements OnInit, OnDestroy {
 	@Input() item!: NavigationEntity;

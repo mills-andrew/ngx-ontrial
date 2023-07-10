@@ -1,16 +1,10 @@
 import { BooleanInput } from '@angular/cdk/coercion';
-import { NgClass, NgFor, NgIf } from '@angular/common';
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, forwardRef, HostBinding, Input, OnDestroy, OnInit } from '@angular/core';
-import { MatIconModule } from '@angular/material/icon';
-import { MatTooltipModule } from '@angular/material/tooltip';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, forwardRef, HostBinding, Inject, Input, OnDestroy, OnInit } from '@angular/core';
+
 import { NavigationEnd, Router } from '@angular/router';
 import { ontrialAnimations } from '@ngx-ontrial/common';
 import { filter, Subject, takeUntil } from 'rxjs';
 import { VerticalNavigationComponent } from '../../vertical.component';
-import { VerticalNavigationBasicItemComponent } from '../basic/basic.component';
-import { VerticalNavigationDividerItemComponent } from '../divider/divider.component';
-import { VerticalNavigationGroupItemComponent } from '../group/group.component';
-import { VerticalNavigationSpacerItemComponent } from '../spacer/spacer.component';
 import { NavigationEntityService } from '../../../../common/navigation-entity.service';
 import { NavigationEntity } from '../../../../common';
 
@@ -19,8 +13,6 @@ import { NavigationEntity } from '../../../../common';
 	templateUrl: './collapsable.component.html',
 	animations: ontrialAnimations,
 	changeDetection: ChangeDetectionStrategy.OnPush,
-	standalone: true,
-	imports: [NgClass, MatTooltipModule, NgIf, MatIconModule, NgFor, VerticalNavigationBasicItemComponent, VerticalNavigationDividerItemComponent, VerticalNavigationGroupItemComponent, VerticalNavigationSpacerItemComponent],
 })
 export class VerticalNavigationCollapsableItemComponent implements OnInit, OnDestroy {
 	/* eslint-disable @typescript-eslint/naming-convention */
@@ -41,7 +33,7 @@ export class VerticalNavigationCollapsableItemComponent implements OnInit, OnDes
 	 */
 	constructor(
 		private _changeDetectorRef: ChangeDetectorRef,
-		private _router: Router,
+		@Inject(Router) private _router: Router,
 		private _ontrialNavigationService: NavigationEntityService,
 	) {
 	}

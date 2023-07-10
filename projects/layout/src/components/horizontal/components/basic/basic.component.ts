@@ -1,9 +1,5 @@
-import { NgClass, NgIf, NgTemplateOutlet } from '@angular/common';
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnDestroy, OnInit } from '@angular/core';
-import { MatIconModule } from '@angular/material/icon';
-import { MatMenuModule } from '@angular/material/menu';
-import { MatTooltipModule } from '@angular/material/tooltip';
-import { IsActiveMatchOptions, RouterLink, RouterLinkActive } from '@angular/router';
+import { IsActiveMatchOptions } from '@angular/router';
 import { HorizontalNavigationComponent } from '../../../horizontal/horizontal.component';
 import { NavigationEntityService } from '../../../../common/navigation-entity.service';
 import { NavigationEntity } from '../../../../common';
@@ -13,9 +9,7 @@ import { Subject, takeUntil } from 'rxjs';
 @Component({
 	selector: 'ontrial-horizontal-navigation-basic-item',
 	templateUrl: './basic.component.html',
-	changeDetection: ChangeDetectionStrategy.OnPush,
-	standalone: true,
-	imports: [NgClass, NgIf, RouterLink, RouterLinkActive, MatTooltipModule, NgTemplateOutlet, MatMenuModule, MatIconModule],
+	changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HorizontalNavigationBasicItemComponent implements OnInit, OnDestroy {
 	@Input() item!: NavigationEntity;

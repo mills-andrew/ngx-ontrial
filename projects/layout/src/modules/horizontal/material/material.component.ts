@@ -1,5 +1,5 @@
 import { NgIf } from '@angular/common';
-import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, Inject, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { ActivatedRoute, Router, RouterOutlet } from '@angular/router';
@@ -14,9 +14,7 @@ import { Subject, takeUntil } from 'rxjs';
 @Component({
 	selector: 'material-layout',
 	templateUrl: './material.component.html',
-	encapsulation: ViewEncapsulation.None,
-	standalone: true,
-	imports: [LoadingBarComponent, NgIf, VerticalNavigationComponent, MatButtonModule, MatIconModule, HorizontalNavigationComponent, RouterOutlet],
+	encapsulation: ViewEncapsulation.None
 })
 export class MaterialLayoutComponent implements OnInit, OnDestroy {
 	isScreenSmall!: boolean;
@@ -27,8 +25,8 @@ export class MaterialLayoutComponent implements OnInit, OnDestroy {
 	 * Constructor
 	 */
 	constructor(
-		private _activatedRoute: ActivatedRoute,
-		private _router: Router,
+		@Inject(ActivatedRoute) private _activatedRoute: ActivatedRoute,
+		@Inject(Router) private _router: Router,
 		private _navigationService: NavigationEntityService,
 		private _MediaWatcherService: MediaWatcherService,
 		private _ontrialNavigationService: NavigationEntityService,

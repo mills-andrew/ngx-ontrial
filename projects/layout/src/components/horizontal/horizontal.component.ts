@@ -1,12 +1,8 @@
-import { NgFor, NgIf } from '@angular/common';
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges, ViewEncapsulation } from '@angular/core';
 import { ontrialAnimations } from '@ngx-ontrial/common';
 import { NavigationEntityService } from '../../common/navigation-entity.service';
 import { UtilsService } from '@ngx-ontrial/core';
 import { ReplaySubject, Subject } from 'rxjs';
-import { HorizontalNavigationBasicItemComponent } from './components/basic/basic.component';
-import { HorizontalNavigationBranchItemComponent } from './components/branch/branch.component';
-import { HorizontalNavigationSpacerItemComponent } from './components/spacer/spacer.component';
 import { NavigationEntity } from '../../common/navigation.types';
 
 @Component({
@@ -17,8 +13,7 @@ import { NavigationEntity } from '../../common/navigation.types';
 	encapsulation: ViewEncapsulation.None,
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	exportAs: 'ontrialHorizontalNavigation',
-	standalone: true,
-	imports: [NgFor, NgIf, HorizontalNavigationBasicItemComponent, HorizontalNavigationBranchItemComponent, HorizontalNavigationSpacerItemComponent],
+	// imports: [NgFor, NgIf, HorizontalNavigationBasicItemComponent, HorizontalNavigationBranchItemComponent, HorizontalNavigationSpacerItemComponent],
 })
 export class HorizontalNavigationComponent implements OnChanges, OnInit, OnDestroy {
 	@Input() name: string = this._UtilsService.randomId();
