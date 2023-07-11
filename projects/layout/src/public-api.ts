@@ -1,3 +1,6 @@
-export * from './common/public-api';
-export * from './modules/public-api'
-export * from './components/public-api';
+export * from './layout.component';
+export * from './layout.types';
+
+export * from './common';
+export * from './templates/modules';
+export * from './templates/components';

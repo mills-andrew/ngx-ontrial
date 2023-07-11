@@ -4,12 +4,10 @@ import { ApplicationConfig } from '@angular/core';
 import { DateAdapter, MAT_DATE_FORMATS } from '@angular/material/core';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { PreloadAllModules, provideRouter, withInMemoryScrolling, withPreloading } from '@angular/router';
-import { provideDefaultIcons, provideOntrial } from '@ngx-ontrial/core';
+import { provideDefaultIcons, provideOntrial, provideTransloco } from '@ngx-ontrial/core';
 import { appRoutes } from './app.router';
 import { provideAuth, provideMockApi } from '@ngx-ontrial/auth';
 import { mockApiServices } from '../mock-api/';
-
-// import { provideTransloco } from 'app/core/transloco/transloco.provider';
 
 export const AppConfig: ApplicationConfig = {
 	providers: [
@@ -41,7 +39,7 @@ export const AppConfig: ApplicationConfig = {
 		},
 
 		// Transloco Config
-		//provideTransloco(),
+		provideTransloco(),
 
 		// Ontrial
 		provideDefaultIcons(),
@@ -64,27 +62,7 @@ export const AppConfig: ApplicationConfig = {
 				{
 					id: 'theme-default',
 					name: 'Default',
-				},
-				{
-					id: 'theme-brand',
-					name: 'Brand',
-				},
-				{
-					id: 'theme-teal',
-					name: 'Teal',
-				},
-				{
-					id: 'theme-rose',
-					name: 'Rose',
-				},
-				{
-					id: 'theme-purple',
-					name: 'Purple',
-				},
-				{
-					id: 'theme-amber',
-					name: 'Amber',
-				},
+				}
 			]
 		})
 	]
