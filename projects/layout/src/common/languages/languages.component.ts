@@ -46,8 +46,10 @@ export class LanguagesComponent implements OnInit, OnDestroy {
 
 		// Check if langs is an array of strings
 		if (typeof langs[0] === 'string') {
-			// Convert string array to object array
-			this.availableLangs = (langs as string[]).map((lang: string) => ({ id: lang, label: lang.toUpperCase() }));
+			if (langs) {
+				// Convert string array to object array
+				this.availableLangs = (langs as string[]).map((lang: string) => ({ id: lang, label: lang.toUpperCase() }));
+			}
 		} else {
 			// Assign it directly if it's already an object array
 			this.availableLangs = langs as { id: string; label: string }[];

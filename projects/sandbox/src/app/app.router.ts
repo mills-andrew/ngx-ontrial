@@ -55,6 +55,7 @@ export const appRoutes: Route[] = [
 		},
 		children: [
 			{ path: 'home', loadChildren: () => import('./modules/home/home.routes') },
+			{ path: 'users', loadChildren: () => import('@ngx-ontrial/common').then(m => m.UsersRoutingModule) },
 		]
 	},
 

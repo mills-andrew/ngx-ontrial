@@ -62,11 +62,11 @@ export const defaultNavigation: INavigationEntity[] = [
 				link: '/apps/chat',
 			},
 			{
-				id: 'apps.contacts',
-				title: 'Contacts',
+				id: 'apps.users',
+				title: 'Users',
 				type: 'basic',
 				icon: 'heroicons_outline:user-group',
-				link: '/apps/contacts',
+				link: '/users',
 			},
 			{
 				id: 'apps.ecommerce',
