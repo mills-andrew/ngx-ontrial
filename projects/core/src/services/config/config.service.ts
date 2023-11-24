@@ -2,6 +2,7 @@ import { Inject, Injectable } from '@angular/core';
 import { ONTRIAL_CONFIG } from './config.constants';
 import { merge } from 'lodash-es';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({ providedIn: 'root' })
 export class ConfigService {
@@ -10,7 +11,8 @@ export class ConfigService {
 	/**
 	 * Constructor
 	 */
-	constructor(@Inject(ONTRIAL_CONFIG) config: any) {
+	constructor(@Inject(ONTRIAL_CONFIG) config: any,
+		private http: HttpClient) {
 		// Private
 		this._config = new BehaviorSubject(config);
 	}
@@ -30,6 +32,10 @@ export class ConfigService {
 		this._config.next(config);
 	}
 
+	get config(): any {
+		return this._config.getValue();
+	}
+
 	// eslint-disable-next-line @typescript-eslint/member-ordering
 	get config$(): Observable<any> {
 		return this._config.asObservable();
@@ -38,6 +44,14 @@ export class ConfigService {
 	// -----------------------------------------------------------------------------------------------------
 	// @ Public methods
 	// -----------------------------------------------------------------------------------------------------
+
+	load(url: string): Promise<any> {
+		return this.http.get(url).toPromise().then(data => {
+			// Set the fetched data to _config BehaviorSubject
+			this.config = data;
+			return data;
+		});
+	}
 
 	/**
 	 * Resets the config to the default

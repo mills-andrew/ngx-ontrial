@@ -1,6 +1,6 @@
 {
-	"name": "@nxg-ontrial/core",
-	"version": "0.0.1",
+	"name": "@ngx-ontrial/core",
+	"version": "1.0.0",
 	"peerDependencies": {
 		"@angular/common": "^16.1.3",
 		"@angular/core": "^16.1.3"

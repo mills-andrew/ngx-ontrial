@@ -1,5 +1,5 @@
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
-import { ENVIRONMENT_INITIALIZER, EnvironmentProviders, inject, Provider } from '@angular/core';
+import { APP_INITIALIZER, ENVIRONMENT_INITIALIZER, EnvironmentProviders, inject, Provider } from '@angular/core';
 import { MATERIAL_SANITY_CHECKS } from '@angular/material/core';
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 import { OntrialConfig } from '../services/config';
@@ -9,6 +9,7 @@ import { MediaWatcherService } from '../services/media-watcher';
 import { PlatformService } from '../services/platform';
 import { SplashScreenService } from '../services/splash-screen';
 import { UtilsService } from '../services/utils';
+import { AppInitializeConfigService } from '../services/init-app/init-app.service';
 
 /**
  * Ontrial provider

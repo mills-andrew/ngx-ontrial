@@ -1,7 +1,6 @@
-import { inject, Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { ConfirmationConfig } from './confirmation.types';
-import { merge } from 'lodash-es';
 import { ConfirmationDialogComponent } from './dialog/dialog.component';
 
 @Injectable({ providedIn: 'root' })
@@ -29,26 +28,20 @@ export class ConfirmationService {
 		dismissible: false,
 	};
 
-	/**
-	 * Constructor
-	 */
-	constructor() {
+	constructor(matDialog: MatDialog) {
+		this._matDialog = matDialog;
 	}
-
-	// -----------------------------------------------------------------------------------------------------
-	// @ Public methods
-	// -----------------------------------------------------------------------------------------------------
 
 	open(config: ConfirmationConfig = {}): MatDialogRef<ConfirmationDialogComponent> {
 		// Merge the user config with the default config
-		const userConfig = merge({}, this._defaultConfig, config);
+		const userConfig = { ...this._defaultConfig, ...config };
 
 		// Open the dialog
 		return this._matDialog.open(ConfirmationDialogComponent, {
 			autoFocus: false,
 			disableClose: !userConfig.dismissible,
 			data: userConfig,
-			panelClass: 'ontrial-confirmation-dialog-panel',
+			panelClass: 'confirmation-dialog-panel',
 		});
 	}
 }

@@ -1,5 +1,5 @@
 import { DOCUMENT, NgIf } from '@angular/common';
-import { Component, Inject, OnDestroy, OnInit, Renderer2, ViewEncapsulation } from '@angular/core';
+import { Component, Inject, Renderer2, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { ONTRIAL_VERSION, OntrialConfig, ConfigService, MediaWatcherService, PlatformService } from '@ngx-ontrial/core';
 import { combineLatest, filter, map, Subject, takeUntil } from 'rxjs';

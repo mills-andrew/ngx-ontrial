@@ -138,10 +138,10 @@
 							"projects/sandbox/src/assets"
 						],
 						"styles": [
-							"projects/material/src/styles/tailwind.scss",
-							"projects/material/src/styles/themes.scss",
+							"styles/tailwind.scss",
+							"styles/themes.scss",
 							"projects/sandbox/src/assets/styles/vendors.scss",
-							"projects/material/src/styles/main.scss",
+							"styles/main.scss",
 							"projects/sandbox/src/assets/styles/styles.scss",
 							"projects/sandbox/src/assets/styles/tailwind.scss"
 						],
@@ -194,10 +194,10 @@
 							"projects/sandbox/src/assets"
 						],
 						"styles": [
-							"projects/material/src/styles/tailwind.scss",
-							"projects/material/src/styles/themes.scss",
+							"styles/tailwind.scss",
+							"styles/themes.scss",
 							"projects/sandbox/src/assets/styles/vendors.scss",
-							"projects/material/src/styles/main.scss",
+							"styles/main.scss",
 							"projects/sandbox/src/assets/styles/styles.scss",
 							"projects/sandbox/src/assets/styles/tailwind.scss"
 						],

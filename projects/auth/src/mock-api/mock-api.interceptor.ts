@@ -2,11 +2,15 @@ import { HttpErrorResponse, HttpEvent, HttpHandlerFn, HttpRequest, HttpResponse 
 import { inject } from '@angular/core';
 import { ONTRIAL_MOCK_API_DEFAULT_DELAY } from './mock-api.constants';
 import { MockApiService } from './mock-api.service';
-import { delay, Observable, of, switchMap, throwError } from 'rxjs';
+import { delay, finalize, Observable, of, switchMap, throwError } from 'rxjs';
+import { LoadingService } from '@ngx-ontrial/core';
 
 export const mockApiInterceptor = (request: HttpRequest<unknown>, next: HttpHandlerFn): Observable<HttpEvent<unknown>> => {
 	const defaultDelay = inject(ONTRIAL_MOCK_API_DEFAULT_DELAY);
 	const ontrialMockApiService = inject(MockApiService);
+	const loadingService = inject(LoadingService); // Inject the LoadingService
+
+	loadingService.show(); // Show the loading bar
 
 	// Try to get the request handler
 	const {
@@ -28,6 +32,7 @@ export const mockApiInterceptor = (request: HttpRequest<unknown>, next: HttpHand
 	// Subscribe to the response function observable
 	return handler.response.pipe(
 		delay(handler.delay ?? defaultDelay ?? 0),
+		finalize(() => loadingService.hide()),
 		switchMap((response) => {
 			// If there is no response data,
 			// throw an error response
@@ -38,7 +43,7 @@ export const mockApiInterceptor = (request: HttpRequest<unknown>, next: HttpHand
 					statusText: 'NOT FOUND',
 				});
 
-				return throwError(response);
+				throw new Error(response);
 			}
 
 			// Parse the response data
@@ -67,6 +72,6 @@ export const mockApiInterceptor = (request: HttpRequest<unknown>, next: HttpHand
 				statusText: 'ERROR',
 			});
 
-			return throwError(response);
+			throw new Error(response);
 		}));
 };

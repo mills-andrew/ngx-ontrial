@@ -11,14 +11,14 @@ import { NavigationService } from '../../navigation-data.service';
 import { NavigationEntityService } from '../../navigation-entity.service';
 import { VerticalNavigationComponent } from '../../../components/vertical/vertical.component';
 import { HorizontalNavigationComponent } from '../../../components/horizontal/horizontal.component';
-import { LanguagesComponent, FullscreenComponent, SearchComponent } from '../../../../common';
+import { LanguagesComponent, FullscreenComponent, SearchComponent, NotificationsComponent, SettingsComponent, UserComponent } from '../../../../common';
 
 @Component({
 	selector: 'enterprise-layout',
 	templateUrl: './enterprise.component.html',
 	encapsulation: ViewEncapsulation.None,
 	standalone: true,
-	imports: [LanguagesComponent, FullscreenComponent, SearchComponent, LoadingBarComponent, NgIf, VerticalNavigationComponent, MatButtonModule, MatIconModule, HorizontalNavigationComponent, RouterOutlet],
+	imports: [LanguagesComponent, UserComponent, SettingsComponent, FullscreenComponent, SearchComponent, LoadingBarComponent, NotificationsComponent, NgIf, VerticalNavigationComponent, MatButtonModule, MatIconModule, HorizontalNavigationComponent, RouterOutlet],
 })
 export class EnterpriseLayoutComponent implements OnInit, OnDestroy {
 	isScreenSmall!: boolean;
@@ -98,5 +98,9 @@ export class EnterpriseLayoutComponent implements OnInit, OnDestroy {
 			// Toggle the opened status
 			navigation.toggle();
 		}
+	}
+
+	navigateToRoot(): void {
+		this._router.navigate(['/']);
 	}
 }

@@ -1,0 +1,12 @@
+.confirmation-dialog-panel {
+	@media (min-width: 768px) {
+		// Adjusted line: consider replacing with the actual breakpoint value for 'md'
+		width: 32rem; // Adjusted line: consider using a standard unit like 'rem' or 'px'
+	}
+
+	.mat-mdc-dialog-container {
+		.mat-mdc-dialog-surface {
+			padding: 0; // Adjusted line: removed '!important'
+		}
+	}
+}

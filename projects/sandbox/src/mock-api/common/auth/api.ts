@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { user as userData } from '../user/data';
+import { account as accountData } from '../account/data';
 import Base64 from 'crypto-js/enc-base64';
 import Utf8 from 'crypto-js/enc-utf8';
 import HmacSHA256 from 'crypto-js/hmac-sha256';
@@ -9,7 +9,7 @@ import { MockApiService } from '@ngx-ontrial/auth';
 @Injectable({ providedIn: 'root' })
 export class AuthMockApi {
 	private readonly _secret: any;
-	private _user: any = userData;
+	private _user: any = accountData;
 
 	/**
 	 * Constructor

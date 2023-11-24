@@ -1,16 +1,22 @@
 import { provideHttpClient } from '@angular/common/http';
-import { ApplicationConfig } from '@angular/core';
-// import { LuxonDateAdapter } from '@angular/material-luxon-adapter';
-import { DateAdapter, MAT_DATE_FORMATS } from '@angular/material/core';
+import { APP_INITIALIZER, ApplicationConfig } from '@angular/core';
+import { DateAdapter as AngularDateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { PreloadAllModules, provideRouter, withInMemoryScrolling, withPreloading } from '@angular/router';
-import { provideDefaultIcons, provideOntrial, provideTransloco } from '@ngx-ontrial/core';
+import { DateAdapter, ConfigService, provideDefaultIcons, provideOntrial, provideTransloco, DateTime } from '@ngx-ontrial/core';
 import { appRoutes } from './app.router';
 import { provideAuth, provideMockApi } from '@ngx-ontrial/auth';
 import { mockApiServices } from '../mock-api/';
 
-export const AppConfig: ApplicationConfig = {
+export const ProvidersConfig: ApplicationConfig = {
 	providers: [
+		{
+			provide: APP_INITIALIZER,
+			useFactory: (appConfigService: ConfigService) => () => appConfigService.load('/assets/app.config.json'),
+			deps: [ConfigService],
+			multi: true
+		},
+
 		provideAnimations(),
 		provideHttpClient(),
 		provideRouter(appRoutes,
@@ -19,10 +25,8 @@ export const AppConfig: ApplicationConfig = {
 		),
 
 		// Material Date Adapter
-		// {
-		// 	provide: DateAdapter,
-		// 	useClass: LuxonDateAdapter,
-		// },
+		{ provide: MAT_DATE_LOCALE, useValue: 'en-US' },
+		{ provide: AngularDateAdapter, useClass: DateAdapter, deps: [DateTime, MAT_DATE_LOCALE] },
 		{
 			provide: MAT_DATE_FORMATS,
 			useValue: {
@@ -50,7 +54,7 @@ export const AppConfig: ApplicationConfig = {
 		}),
 		provideOntrial({
 			layout: 'enterprise',
-			scheme: 'light',
+			scheme: 'auto',
 			screens: {
 				sm: '600px',
 				md: '960px',

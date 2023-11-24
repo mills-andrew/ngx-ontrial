@@ -6,25 +6,9 @@ import { MatIconModule } from '@angular/material/icon';
 import { ConfirmationConfig } from '../confirmation.types';
 
 @Component({
-	selector: 'ontrial-confirmation-dialog',
+	selector: 'confirmation-dialog',
 	templateUrl: './dialog.component.html',
-	styles: [
-		`
-            .ontrial-confirmation-dialog-panel {
-
-                @screen md {
-                    @apply w-128;
-                }
-
-                .mat-mdc-dialog-container {
-
-                    .mat-mdc-dialog-surface {
-                        padding: 0 !important;
-                    }
-                }
-            }
-        `,
-	],
+	styleUrls: ['./dialog.component.scss'],
 	encapsulation: ViewEncapsulation.None,
 	standalone: true,
 	imports: [NgIf, MatButtonModule, MatDialogModule, MatIconModule, NgClass],
@@ -34,6 +18,6 @@ export class ConfirmationDialogComponent {
 	 * Constructor
 	 */
 	constructor(@Inject(MAT_DIALOG_DATA) public data: ConfirmationConfig) {
-	}
 
+	}
 }

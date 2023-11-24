@@ -19,6 +19,8 @@
 <ng-template let-lang #flagImage>
 	<span class="relative w-6 shadow rounded-md overflow-hidden">
 		<span class="absolute inset-0 ring-1 ring-inset ring-black ring-opacity-10"></span>
-		{{flagCodes[lang] ? flagCodes[lang]!.toUpperCase() : 'UNDEFINED'}}
+		<img class="w-full" [src]="'assets/images/flags/' + flagCodes[lang].toUpperCase() + '.svg'"
+			[alt]="'Flag image for ' + lang">
+		<!-- {{flagCodes[lang] ? flagCodes[lang]!.toUpperCase() : 'UNDEFINED'}} -->
 	</span>
 </ng-template>

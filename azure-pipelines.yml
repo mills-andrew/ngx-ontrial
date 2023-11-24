@@ -1,0 +1,41 @@
+# Node.js with Angular
+# Build a Node.js project that uses Angular.
+# Add steps that analyze code, save build artifacts, deploy, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
+
+trigger:
+- main
+
+pool:
+  vmImage: windows-latest
+
+steps:
+- task: NodeTool@0
+  inputs:
+    versionSpec: '16.14.x'
+  displayName: 'Install Node.js'
+
+# Cache npm dependencies
+- task: Cache@2
+  inputs:
+    key: 'npm | package-lock.json' # Using package-lock.json as cache key ensures cache bust when dependencies change
+    path: 'node_modules'
+    cacheHitVar: CACHE_RESTORED
+  displayName: 'Cache npm dependencies'
+
+# Install dependencies
+- script: npm ci
+  condition: ne(variables.CACHE_RESTORED, 'true') # Only run if cache was not restored
+  displayName: 'npm ci'
+
+# Build all modules using the local Angular CLI
+- script: |
+    npx ng build core && npx ng build common && npx ng build material && npx ng build auth && npx ng build layout
+  displayName: 'Build All Modules'
+
+# Publish the build artifacts
+- task: PublishPipelineArtifact@1
+  inputs:
+    targetPath: 'dist/' # Ensure this path contains your build artifacts
+    artifact: 'drop'
+    publishLocation: 'pipeline'

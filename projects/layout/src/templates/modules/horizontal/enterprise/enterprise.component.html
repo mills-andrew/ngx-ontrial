@@ -9,7 +9,7 @@
 		<ng-container ontrialVerticalNavigationContentHeader>
 			<!-- Logo -->
 			<div class="flex items-center h-20 pt-6 px-8">
-				<img class="w-24" src="images/logo/logo-text-on-dark.svg" alt="Logo image">
+				<img class="w-24" src="assets/images/logo.png" alt="Logo image">
 			</div>
 		</ng-container>
 	</ontrial-vertical-navigation>
@@ -26,10 +26,12 @@
 			<div class="flex items-center w-full max-w-360 h-16 sm:h-20">
 				<!-- Logo -->
 				<ng-container *ngIf="!isScreenSmall">
-					<div class="flex items-center">
-						<img class="w-24" src="images/logo/logo-text-on-dark.svg" alt="Logo image">
+					<div class="flex items-center cursor-pointer" (click)="navigateToRoot()">
+						<img class="w-16" src="assets/images/logo-64x64.png" alt="Logo image">
 					</div>
 				</ng-container>
+
+
 				<!-- Navigation toggle button -->
 				<ng-container *ngIf="isScreenSmall">
 					<button mat-icon-button (click)="toggleNavigation('mainNavigation')">
@@ -41,13 +43,16 @@
 					<languages></languages>
 					<ontrial-fullscreen class="hidden md:block"></ontrial-fullscreen>
 					<search [appearance]="'bar'"></search>
+					<notifications></notifications>
+					<settings></settings>
+					<user></user>
 					<!-- <shortcuts></shortcuts>
 					<messages></messages>
-					<notifications></notifications>
+					
 					<button class="lg:hidden" mat-icon-button (click)="quickChat.toggle()">
 						<mat-icon [svgIcon]="'heroicons_outline:chat-bubble-left-right'"></mat-icon>
 					</button>
-					<user></user> -->
+					 -->
 				</div>
 			</div>
 		</div>

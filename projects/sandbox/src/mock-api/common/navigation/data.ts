@@ -30,14 +30,7 @@ export const defaultNavigation: INavigationEntity[] = [
 				type: 'basic',
 				icon: 'heroicons_outline:banknotes',
 				link: '/dashboards/finance',
-			},
-			{
-				id: 'dashboards.crypto',
-				title: 'Crypto',
-				type: 'basic',
-				icon: 'heroicons_outline:currency-dollar',
-				link: '/dashboards/crypto',
-			},
+			}
 		],
 	},
 	{
@@ -62,11 +55,11 @@ export const defaultNavigation: INavigationEntity[] = [
 				link: '/apps/chat',
 			},
 			{
-				id: 'apps.users',
-				title: 'Users',
+				id: 'apps.accounts',
+				title: 'Accounts',
 				type: 'basic',
 				icon: 'heroicons_outline:user-group',
-				link: '/users',
+				link: '/accounts',
 			},
 			{
 				id: 'apps.ecommerce',
@@ -677,7 +670,7 @@ export const defaultNavigation: INavigationEntity[] = [
 				title: 'Settings',
 				type: 'basic',
 				icon: 'heroicons_outline:cog-8-tooth',
-				link: '/pages/settings',
+				link: '/settings',
 			},
 		],
 	},
