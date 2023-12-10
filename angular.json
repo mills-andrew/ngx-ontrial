@@ -165,19 +165,19 @@
 				"serve": {
 					"builder": "@angular-devkit/build-angular:dev-server",
 					"configurations": {
-						"production": {
-							"browserTarget": "sandbox:build:production"
+            "production": {
+              "buildTarget": "sandbox:build:production"
 						},
-						"development": {
-							"browserTarget": "sandbox:build:development"
+            "development": {
+              "buildTarget": "sandbox:build:development"
 						}
 					},
 					"defaultConfiguration": "development"
 				},
 				"extract-i18n": {
 					"builder": "@angular-devkit/build-angular:extract-i18n",
-					"options": {
-						"browserTarget": "sandbox:build"
+          "options": {
+            "buildTarget": "sandbox:build"
 					}
 				},
 				"test": {

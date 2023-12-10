@@ -48,8 +48,7 @@
 				<ng-container *ngIf="account!.tags.length">
 					<div class="flex flex-wrap items-center mt-2">
 						<!-- Tag -->
-						<ng-container
-							*ngFor="let tag of (account!.tags | ontrialFindByKey:'id':tags!); trackBy: trackByFn">
+						<ng-container *ngFor="let tag of (account!.tags | findByKey:'id':tags!); trackBy: trackByFn">
 							<div
 								class="flex items-center justify-center py-1 px-3 mr-3 mb-3 rounded-full leading-normal text-gray-500 bg-gray-100 dark:text-gray-300 dark:bg-gray-700">
 								<span class="text-sm font-medium whitespace-nowrap">{{tag.title}}</span>
@@ -221,7 +220,7 @@
 						<!-- Tags -->
 						<ng-container *ngIf="account!.tags.length">
 							<ng-container
-								*ngFor="let tag of (account!.tags | ontrialFindByKey:'id':tags!); trackBy: trackByFn">
+								*ngFor="let tag of (account!.tags | findByKey:'id':tags!); trackBy: trackByFn">
 								<div
 									class="flex items-center justify-center px-4 m-1.5 rounded-full leading-9 text-gray-500 bg-gray-100 dark:text-gray-300 dark:bg-gray-700">
 									<span class="text-md font-medium whitespace-nowrap">{{tag.title}}</span>

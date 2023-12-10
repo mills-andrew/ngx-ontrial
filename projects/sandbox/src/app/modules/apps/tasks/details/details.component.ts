@@ -18,10 +18,12 @@ import { ActivatedRoute, NavigationEnd, Router, RouterLink } from '@angular/rout
 import { assign } from 'lodash-es';
 import { debounceTime, filter, Subject, takeUntil, tap } from 'rxjs';
 import { Tag, Task } from '../tasks.types';
-import { ConfirmationService, DateTime, FindByKeyPipe } from '@ngx-ontrial/core';
+import { DateTime } from '@ngx-ontrial/core';
 import { TasksListComponent } from '../list/list.component';
 import { TasksService } from '../tasks.service';
 import { MatDialogModule } from '@angular/material/dialog';
+import { ConfirmationService } from '@ngx-ontrial/material';
+import { FindByKeyPipe } from '@ngx-ontrial/common';
 
 @Component({
 	selector: 'tasks-details',

@@ -18,9 +18,10 @@ import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { debounceTime, Subject, takeUntil } from 'rxjs';
 import { AccountsListComponent } from '../list/list.component';
 import { AccountsService } from '../accounts.service';
-import { ConfirmationService, FindByKeyPipe } from '@ngx-ontrial/core';
 import { Country, Tag, Account } from '../accounts.types';
 import { MatDialogModule } from '@angular/material/dialog';
+import { ConfirmationService } from '@ngx-ontrial/material';
+import { FindByKeyPipe } from '@ngx-ontrial/common';
 
 @Component({
 	selector: 'accounts-details',
@@ -57,7 +58,7 @@ export class AccountsDetailsComponent implements OnInit, OnDestroy {
 		private _accountsListComponent: AccountsListComponent,
 		private _accountsService: AccountsService,
 		private _formBuilder: UntypedFormBuilder,
-		private _fuseConfirmationService: ConfirmationService,
+		private _confirmationService: ConfirmationService,
 		private _renderer2: Renderer2,
 		private _router: Router,
 		private _overlay: Overlay,
@@ -278,7 +279,7 @@ export class AccountsDetailsComponent implements OnInit, OnDestroy {
 	 */
 	deleteAccount(): void {
 		// Open the confirmation dialog
-		const confirmation = this._fuseConfirmationService.open({
+		const confirmation = this._confirmationService.open({
 			title: 'Delete account',
 			message: 'Are you sure you want to delete this account? This action cannot be undone!',
 			actions: {
@@ -289,7 +290,7 @@ export class AccountsDetailsComponent implements OnInit, OnDestroy {
 		});
 
 		// Subscribe to the confirmation dialog closed action
-		confirmation.afterClosed().subscribe((result) => {
+		confirmation.afterClosed().subscribe((result: string) => {
 			// If the confirm button pressed...
 			if (result === 'confirmed') {
 

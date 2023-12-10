@@ -1,3 +1,5 @@
 export * from './animations';
-export * from './modules/error';
-export * from './modules/maintenance';
+export * from './directives';
+export * from './modules';
+export * from './pipes'
+export * from './types';

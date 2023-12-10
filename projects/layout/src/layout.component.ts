@@ -1,7 +1,7 @@
 import { DOCUMENT, NgIf } from '@angular/common';
 import { Component, Inject, Renderer2, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
-import { ONTRIAL_VERSION, OntrialConfig, ConfigService, MediaWatcherService, PlatformService } from '@ngx-ontrial/core';
+import { ONTRIAL_VERSION, IOntrialConfig, ConfigService, MediaWatcherService, PlatformService } from '@ngx-ontrial/core';
 import { combineLatest, filter, map, Subject, takeUntil } from 'rxjs';
 import { EmptyLayoutComponent } from './templates/modules/empty/empty.component';
 import { CenteredLayoutComponent } from './templates/modules/horizontal/centered/centered.component';
@@ -24,7 +24,7 @@ import { ThinLayoutComponent } from './templates/modules/vertical/thin/thin.comp
 	imports: [NgIf, EmptyLayoutComponent, CenteredLayoutComponent, EnterpriseLayoutComponent, MaterialLayoutComponent, ModernLayoutComponent, ClassicLayoutComponent, ClassyLayoutComponent, CompactLayoutComponent, DenseLayoutComponent, FuturisticLayoutComponent, ThinLayoutComponent],
 })
 export class LayoutComponent {
-	config!: OntrialConfig;
+	config!: IOntrialConfig;
 	layout!: string;
 	scheme!: 'dark' | 'light';
 	theme!: string;
@@ -85,7 +85,7 @@ export class LayoutComponent {
 		// Subscribe to config changes
 		this._configService.config$
 			.pipe(takeUntil(this._unsubscribeAll))
-			.subscribe((config: OntrialConfig) => {
+			.subscribe((config: IOntrialConfig) => {
 				// Store the config
 				this.config = config;
 

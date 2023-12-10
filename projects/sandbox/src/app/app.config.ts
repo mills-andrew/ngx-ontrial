@@ -3,20 +3,13 @@ import { APP_INITIALIZER, ApplicationConfig } from '@angular/core';
 import { DateAdapter as AngularDateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { PreloadAllModules, provideRouter, withInMemoryScrolling, withPreloading } from '@angular/router';
-import { DateAdapter, ConfigService, provideDefaultIcons, provideOntrial, provideTransloco, DateTime } from '@ngx-ontrial/core';
+import { DateAdapter, ConfigService, provideDefaultIcons, provideOntrial, provideTransloco, DateTime, defaultConfiguration } from '@ngx-ontrial/core';
 import { appRoutes } from './app.router';
 import { provideAuth, provideMockApi } from '@ngx-ontrial/auth';
 import { mockApiServices } from '../mock-api/';
 
 export const ProvidersConfig: ApplicationConfig = {
 	providers: [
-		{
-			provide: APP_INITIALIZER,
-			useFactory: (appConfigService: ConfigService) => () => appConfigService.load('/assets/app.config.json'),
-			deps: [ConfigService],
-			multi: true
-		},
-
 		provideAnimations(),
 		provideHttpClient(),
 		provideRouter(appRoutes,
@@ -52,22 +45,6 @@ export const ProvidersConfig: ApplicationConfig = {
 			delay: 0,
 			services: mockApiServices,
 		}),
-		provideOntrial({
-			layout: 'enterprise',
-			scheme: 'auto',
-			screens: {
-				sm: '600px',
-				md: '960px',
-				lg: '1280px',
-				xl: '1440px',
-			},
-			theme: 'theme-default',
-			themes: [
-				{
-					id: 'theme-default',
-					name: 'Default',
-				}
-			]
-		})
+		provideOntrial("/assets/app.config.json", defaultConfiguration)
 	]
 };

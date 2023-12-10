@@ -4,7 +4,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { Router } from '@angular/router';
-import { ConfigService, OntrialConfig, Scheme, Theme, Themes } from '@ngx-ontrial/core';
+import { ConfigService, IOntrialConfig, Scheme, Theme, Themes } from '@ngx-ontrial/core';
 import { DrawerComponent } from '@ngx-ontrial/material';
 
 import { Subject, takeUntil } from 'rxjs';
@@ -34,7 +34,7 @@ import { Subject, takeUntil } from 'rxjs';
 	imports: [MatIconModule, DrawerComponent, MatButtonModule, NgFor, NgClass, MatTooltipModule],
 })
 export class SettingsComponent implements OnInit, OnDestroy {
-	config!: OntrialConfig;
+	config!: IOntrialConfig;
 	layout!: string;
 	scheme!: 'dark' | 'light';
 	theme!: string;
@@ -46,7 +46,7 @@ export class SettingsComponent implements OnInit, OnDestroy {
 	 */
 	constructor(
 		private _router: Router,
-		private _fuseConfigService: ConfigService,
+		private _configService: ConfigService,
 	) {
 	}
 
@@ -59,9 +59,9 @@ export class SettingsComponent implements OnInit, OnDestroy {
 	 */
 	ngOnInit(): void {
 		// Subscribe to config changes
-		this._fuseConfigService.config$
+		this._configService.config$
 			.pipe(takeUntil(this._unsubscribeAll))
-			.subscribe((config: OntrialConfig) => {
+			.subscribe((config: IOntrialConfig) => {
 				// Store the config
 				this.config = config;
 			});
@@ -94,7 +94,7 @@ export class SettingsComponent implements OnInit, OnDestroy {
 			queryParamsHandling: 'merge',
 		}).then(() => {
 			// Set the config
-			this._fuseConfigService.config = { layout };
+			this._configService.config = { layout };
 		});
 	}
 
@@ -104,7 +104,7 @@ export class SettingsComponent implements OnInit, OnDestroy {
 	 * @param scheme
 	 */
 	setScheme(scheme: Scheme): void {
-		this._fuseConfigService.config = { scheme };
+		this._configService.config = { scheme };
 	}
 
 	/**
@@ -113,6 +113,6 @@ export class SettingsComponent implements OnInit, OnDestroy {
 	 * @param theme
 	 */
 	setTheme(theme: Theme): void {
-		this._fuseConfigService.config = { theme };
+		this._configService.config = { theme };
 	}
 }

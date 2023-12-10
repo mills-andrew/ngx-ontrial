@@ -4,7 +4,7 @@ import { ScrollStrategy, ScrollStrategyOptions } from '@angular/cdk/overlay';
 import { DOCUMENT, NgFor, NgIf } from '@angular/common';
 import { AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, EventEmitter, HostBinding, HostListener, Inject, Input, OnChanges, OnDestroy, OnInit, Output, QueryList, Renderer2, SimpleChanges, ViewChild, ViewChildren, ViewEncapsulation } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
-import { ScrollbarDirective, UtilsService } from '@ngx-ontrial/core';
+import { UtilsService } from '@ngx-ontrial/core';
 import { VerticalNavigationAsideItemComponent } from '../vertical/components/aside/aside.component';
 import { VerticalNavigationBasicItemComponent } from '../vertical/components/basic/basic.component';
 import { VerticalNavigationCollapsableItemComponent } from '../vertical/components/collapsable/collapsable.component';
@@ -12,7 +12,7 @@ import { VerticalNavigationDividerItemComponent } from '../vertical/components/d
 import { VerticalNavigationGroupItemComponent } from '../vertical/components/group/group.component';
 import { VerticalNavigationSpacerItemComponent } from '../vertical/components/spacer/spacer.component';
 import { delay, filter, merge, ReplaySubject, Subject, Subscription, takeUntil } from 'rxjs';
-import { ontrialAnimations } from '@ngx-ontrial/common';
+import { ontrialAnimations, ScrollbarDirective } from '@ngx-ontrial/common';
 import { INavigationEntity, VerticalNavigationAppearance, VerticalNavigationMode, VerticalNavigationPosition } from '../../modules/navigation.types';
 import { NavigationEntityService } from '../../modules/navigation-entity.service';
 
@@ -25,7 +25,7 @@ import { NavigationEntityService } from '../../modules/navigation-entity.service
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	exportAs: 'ontrialVerticalNavigation',
 	standalone: true,
-	imports: [ScrollbarDirective, NgFor, NgIf, VerticalNavigationAsideItemComponent, VerticalNavigationBasicItemComponent, VerticalNavigationCollapsableItemComponent, VerticalNavigationDividerItemComponent, VerticalNavigationGroupItemComponent, VerticalNavigationSpacerItemComponent],
+	imports: [NgFor, NgIf, ScrollbarDirective, VerticalNavigationAsideItemComponent, VerticalNavigationBasicItemComponent, VerticalNavigationCollapsableItemComponent, VerticalNavigationDividerItemComponent, VerticalNavigationGroupItemComponent, VerticalNavigationSpacerItemComponent],
 })
 export class VerticalNavigationComponent implements OnChanges, OnInit, AfterViewInit, OnDestroy {
 	/* eslint-disable @typescript-eslint/naming-convention */

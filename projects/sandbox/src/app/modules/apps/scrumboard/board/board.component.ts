@@ -10,11 +10,12 @@ import { RouterLink, RouterOutlet } from '@angular/router';
 import { Subject, takeUntil } from 'rxjs';
 import { ScrumboardBoardAddCardComponent } from './add-card/add-card.component';
 import { ScrumboardBoardAddListComponent } from './add-list/add-list.component';
-import { ConfirmationService, DateTime } from '@ngx-ontrial/core';
+import { DateTime } from '@ngx-ontrial/core';
 import { Board, List, Card } from '../scrumboard.models';
 import { ScrumboardService } from '../scrumboard.service';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatNativeDateModule } from '@angular/material/core';
+import { ConfirmationService } from '@ngx-ontrial/material';
 
 @Component({
 	selector: 'scrumboard-board',

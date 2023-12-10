@@ -1,3 +1,3 @@
-import { Version } from './version';
+import { VersionType } from './version.type';
 
-export const ONTRIAL_VERSION = new Version('1.0.0').full;
+export const ONTRIAL_VERSION = new VersionType('1.0.0').full;

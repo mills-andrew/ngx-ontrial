@@ -12,12 +12,12 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatSort, MatSortModule } from '@angular/material/sort';
-import { ontrialAnimations } from '@ngx-ontrial/common';
 import { debounceTime, map, merge, Observable, Subject, switchMap, takeUntil } from 'rxjs';
 import { InventoryService } from '../inventory.service';
 import { InventoryProduct, InventoryBrand, InventoryCategory, InventoryTag, InventoryPagination, InventoryVendor } from '../inventory.types';
-import { ConfirmationService } from '@ngx-ontrial/core';
 import { MatDialogModule } from '@angular/material/dialog';
+import { ConfirmationService } from '@ngx-ontrial/material';
+import { ontrialAnimations } from '@ngx-ontrial/common';
 
 @Component({
 	selector: 'inventory-list',
@@ -533,7 +533,7 @@ export class InventoryListComponent implements OnInit, AfterViewInit, OnDestroy 
 		});
 
 		// Subscribe to the confirmation dialog closed action
-		confirmation.afterClosed().subscribe((result) => {
+		confirmation.afterClosed().subscribe((result: string) => {
 			// If the confirm button pressed...
 			if (result === 'confirmed') {
 				// Get the product object

@@ -17,7 +17,6 @@ export class AppComponent {
 		private router: Router,
 		private configService: ConfigService,
 	) {
-
 	}
 
 	ngOnInit() {
