@@ -43,7 +43,7 @@ export class FileManagerDetailsComponent implements OnInit, OnDestroy {
 		this._fileManagerListComponent.matDrawer.open();
 
 		// Get the item
-		this._fileManagerService.item$
+		this._fileManagerService.file$
 			.pipe(takeUntil(this._unsubscribeAll))
 			.subscribe((item: Item | null) => {
 				if (item === null) return;

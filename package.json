@@ -3,7 +3,7 @@
 	"version": "1.0.0",
 	"scripts": {
 		"ng": "ng",
-		"start": "ng serve sandbox --open",
+		"start": "ng serve sandbox --open --host localhost --port 4200",
 		"build": "ng build core && ng build common && ng build material && ng build auth && ng build layout",
 		"watch": "ng build --watch --configuration development",
 		"test": "ng test"

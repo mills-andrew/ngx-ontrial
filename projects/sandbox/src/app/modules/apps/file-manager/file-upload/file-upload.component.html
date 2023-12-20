@@ -1,0 +1,100 @@
+<div class="flex flex-col flex-auto md:w-160 md:min-w-160 -m-6">
+	<!-- Title -->
+	<div class="m-4">
+		<div>
+			<div class="text-lg font-medium tracking-tight leading-6 truncate">Files: {{currentFolder!.name}}</div>
+		</div>
+
+		<ng-container *ngFor="let file of files; trackBy: trackByFn">
+			<div class="flex flex-row items-center justify-between m-4">
+				<div class="flex flex-col">
+					<div class="font-medium">{{file.name}}</div>
+					<div
+						class="flex flex-col sm:flex-row sm:items-center -ml-0.5 mt-2 sm:mt-1 space-y-1 sm:space-y-0 sm:space-x-3">
+						<ng-container *ngIf="file.size">
+							<div class="flex items-center">
+								<mat-icon class="icon-size-5 text-hint" [svgIcon]="'heroicons_solid:clock'"></mat-icon>
+								<div class="ml-1.5 text-md text-secondary">
+									{{file.size}}</div>
+							</div>
+						</ng-container>
+						<ng-container *ngIf="file.type">
+							<div class="flex items-center">
+								<mat-icon class="icon-size-5 text-hint"
+									[svgIcon]="'heroicons_solid:map-pin'"></mat-icon>
+								<div class="ml-1.5 text-md text-secondary">
+									{{file.type}}</div>
+							</div>
+						</ng-container>
+					</div>
+				</div>
+				<div class="flex items-center justify-end w-full max-w-3xl mx-auto pt-6">
+					<a mat-icon-button [matTooltip]="'Remove'">
+						<mat-icon [svgIcon]="'heroicons_outline:x-mark'"></mat-icon>
+					</a>
+				</div>
+			</div>
+		</ng-container>
+
+		<!-- Actions -->
+		<ng-container *ngIf="true">
+
+			<div class="flex items-center mt-4 justify-end">
+				<!-- Browse -->
+				<!-- <button mat-flat-button [color]="'primary'" type="file" (change)="onFileSelected($event)" multiple>
+					Browse
+				</button> -->
+
+				<!-- Upload -->
+				<button mat-flat-button [color]="'primary'" [disabled]="files.length == 0" (click)="uploadFiles()">
+					Upload
+				</button>
+
+			</div>
+		</ng-container>
+	</div>
+</div>
+<!-- <input type="file" (change)="onFileSelected($event)" multiple />
+
+	<div
+		class="sm:col-span-2 md:col-span-4 lg:col-span-2 flex flex-col flex-auto p-6 bg-card shadow rounded-2xl overflow-hidden">
+		<div class="flex flex-col sm:flex-row items-start justify-between">
+			<div class="text-lg font-medium tracking-tight leading-6 truncate">Files</div>
+		</div>
+		<div class="flex flex-col mt-2 divide-y">
+			<ng-container *ngFor="let file of files; trackBy: trackByFn">
+				<div class="flex flex-row items-center justify-between py-4 px-0.5">
+					<div class="flex flex-col">
+						<div class="font-medium">{{file.name}}</div>
+						<div
+							class="flex flex-col sm:flex-row sm:items-center -ml-0.5 mt-2 sm:mt-1 space-y-1 sm:space-y-0 sm:space-x-3">
+							<ng-container *ngIf="file.size">
+								<div class="flex items-center">
+									<mat-icon class="icon-size-5 text-hint"
+										[svgIcon]="'heroicons_solid:clock'"></mat-icon>
+									<div class="ml-1.5 text-md text-secondary">
+										{{file.size}}</div>
+								</div>
+							</ng-container>
+							<ng-container *ngIf="file.type">
+								<div class="flex items-center">
+									<mat-icon class="icon-size-5 text-hint"
+										[svgIcon]="'heroicons_solid:map-pin'"></mat-icon>
+									<div class="ml-1.5 text-md text-secondary">
+										{{file.type}}</div>
+								</div>
+							</ng-container>
+						</div>
+					</div>
+					<div class="flex items-center justify-end w-full max-w-3xl mx-auto pt-6">
+						<a mat-icon-button [matTooltip]="'Close'">
+							<mat-icon [svgIcon]="'heroicons_outline:x-mark'"></mat-icon>
+						</a>
+					</div>
+				</div>
+			</ng-container>
+		</div>
+	</div>
+
+	<button (click)="uploadFiles()">Upload</button>
+	<button>Cancel</button> -->

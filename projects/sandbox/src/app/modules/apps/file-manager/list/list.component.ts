@@ -7,8 +7,10 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { ActivatedRoute, Router, RouterLink, RouterOutlet } from '@angular/router';
 import { FileManagerService } from '../file-manager.service';
 import { Item, Items } from '../file-manager.types';
-import { Subject, takeUntil } from 'rxjs';
-import { MediaWatcherService } from '@ngx-ontrial/core';
+import { Subject, catchError, takeUntil } from 'rxjs';
+import { MediaWatcherService, UtilsService } from '@ngx-ontrial/core';
+import { FileUploadComponent } from '../file-upload/file-upload.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
 	selector: 'file-manager-list',
@@ -16,12 +18,16 @@ import { MediaWatcherService } from '@ngx-ontrial/core';
 	encapsulation: ViewEncapsulation.None,
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	standalone: true,
-	imports: [MatSidenavModule, RouterOutlet, NgIf, RouterLink, NgFor, MatButtonModule, MatIconModule, MatTooltipModule],
+	imports: [FileUploadComponent, MatSidenavModule, RouterOutlet, NgIf, RouterLink, NgFor, MatButtonModule, MatIconModule, MatTooltipModule],
 })
 export class FileManagerListComponent implements OnInit, OnDestroy {
+	// Parent component
+	showFileUpload = false;
+
 	@ViewChild('matDrawer', { static: true }) matDrawer!: MatDrawer;
 	drawerMode!: 'side' | 'over';
 	selectedItem!: Item;
+	selectedFolder!: Item;
 	items!: Items;
 	private _unsubscribeAll: Subject<any> = new Subject<any>();
 
@@ -29,6 +35,8 @@ export class FileManagerListComponent implements OnInit, OnDestroy {
 	 * Constructor
 	 */
 	constructor(
+		private _utilsService: UtilsService,
+		private _matDialog: MatDialog,
 		private _activatedRoute: ActivatedRoute,
 		private _changeDetectorRef: ChangeDetectorRef,
 		private _router: Router,
@@ -58,7 +66,7 @@ export class FileManagerListComponent implements OnInit, OnDestroy {
 			});
 
 		// Get the item
-		this._fileManagerService.item$
+		this._fileManagerService.file$
 			.pipe(takeUntil(this._unsubscribeAll))
 			.subscribe((item: Item | null) => {
 				if (item === null) return;
@@ -113,5 +121,36 @@ export class FileManagerListComponent implements OnInit, OnDestroy {
 	 */
 	trackByFn(index: number, item: any): any {
 		return item.id || index;
+	}
+
+	onFileSelected(event: any) {
+		let folder: Item = this.items.path[this.items.path.length - 1];
+		for (let file of event.target.files) {
+			let _tmpFile: Item = {
+				id: this._utilsService.randomId(),
+				folderId: folder.id,
+				name: file.name,
+				createdBy: 'Andrew Mills',
+				createdAt: 'June 02, 2020',
+				modifiedAt: 'June 02, 2020',
+				size: file.size,
+				type: file.type,
+				contents: file.contents,
+				description: 'string | null'
+			}
+			this.items.files.push(_tmpFile);
+		}
+	}
+
+	addFiles(): void {
+		let folder: Item = this.items.path[this.items.path.length - 1] ??
+		{
+			name: "Root"
+		}
+		this._matDialog.open(FileUploadComponent, {
+			data: {
+				item: folder,
+			},
+		});
 	}
 }

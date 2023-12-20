@@ -5,6 +5,7 @@ import { Item, Items } from './file-manager.types';
 
 @Injectable({ providedIn: 'root' })
 export class FileManagerService {
+
 	// Private
 	private _item: BehaviorSubject<Item | null> = new BehaviorSubject<Item | null>(null);
 	private _items: BehaviorSubject<Items | null> = new BehaviorSubject<Items | null>(null);
@@ -29,7 +30,7 @@ export class FileManagerService {
 	/**
 	 * Getter for item
 	 */
-	get item$(): Observable<Item | null> {
+	get file$(): Observable<Item | null> {
 		return this._item.asObservable();
 	}
 
@@ -66,6 +67,7 @@ export class FileManagerService {
 				// Find within the folders and files
 				const item = [...items!.folders, ...items!.files].find(value => value.id === id) || null;
 
+				console.log("file", item);
 				// Update the item
 				this._item.next(item);
 
@@ -74,7 +76,7 @@ export class FileManagerService {
 			}),
 			switchMap((item) => {
 				if (!item) {
-					return throwError('Could not found the item with id of ' + id + '!');
+					throw new Error('Could not found the item with id of ' + id + '!');
 				}
 
 				return of(item);

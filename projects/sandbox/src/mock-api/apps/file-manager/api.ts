@@ -74,6 +74,7 @@ export class FileManagerMockApi {
 				return [
 					200,
 					{
+						currentFolder,
 						folders,
 						files,
 						path,

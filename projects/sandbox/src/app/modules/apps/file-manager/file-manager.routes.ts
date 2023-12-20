@@ -1,6 +1,6 @@
 import { inject } from '@angular/core';
 import { ActivatedRouteSnapshot, Router, RouterStateSnapshot, Routes } from '@angular/router';
-import { catchError, throwError } from 'rxjs';
+import { catchError, forkJoin, throwError } from 'rxjs';
 import { FileManagerDetailsComponent } from './details/details.component';
 import { FileManagerService } from './file-manager.service';
 import { FileManagerComponent } from './file-manager.component';
@@ -15,8 +15,9 @@ import { FileManagerListComponent } from './list/list.component';
 const folderResolver = (route: ActivatedRouteSnapshot, state: RouterStateSnapshot) => {
 	const fileManagerService = inject(FileManagerService);
 	const router = inject(Router);
+	const folderId = route.paramMap.get('folderId')!;
 
-	return fileManagerService.getItems(route.paramMap.get('folderId')!).pipe(
+	return fileManagerService.getItems(folderId).pipe(
 		// Error here means the requested folder is not available
 		catchError((error) => {
 			// Log the error
@@ -32,6 +33,7 @@ const folderResolver = (route: ActivatedRouteSnapshot, state: RouterStateSnapsho
 			return throwError(error);
 		}),
 	);
+	// fileManagerService.getFolderById(folderId);
 };
 
 /**
